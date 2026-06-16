@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+@theme {
+  --radius-lg: 0.875rem;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #1874ed 0%, #3646e8 50%, #4c1ebc 100%);
+  --gradient-soft: linear-gradient(180deg, #f6fbff 0%, #eaf3ff 100%);
+  --gradient-mesh: radial-gradient(at 20% 0%, #bfd9ff99 0px, transparent 50%), radial-gradient(at 80% 10%, #c2c8ff80 0px, transparent 50%), radial-gradient(at 60% 60%, #b2e8fa66 0px, transparent 50%);
+
+  /* Custom animations */
+  --animate-float: float-slow 6s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in: fade-in 0.3s ease-out both;
+  --animate-slide-up: slide-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-page-in: page-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes pulse-ring {
+    0% { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 0; transform: scale(1.6); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes page-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: #fcfeff;
+  --foreground: #071123;
+  --ink: #071123;
+  --ink-soft: #444e5e;
+  --card: #ffffff;
+  --card-foreground: #071123;
+  --popover: #ffffff;
+  --popover-foreground: #071123;
+  --primary: #0a54dd;
+  --primary-foreground: #f9fcff;
+  --brand: #0a54dd;
+  --brand-foreground: #f9fcff;
+  --brand-soft: #e8f3ff;
+  --secondary: #eff6fd;
+  --secondary-foreground: #0d1a32;
+  --muted: #eff6fd;
+  --muted-foreground: #596475;
+  --accent: #e1f0ff;
+  --accent-foreground: #0d1a32;
+  --destructive: #f22c2d;
+  --destructive-foreground: #fafcfe;
+  --border: #dfe5ed;
+  --input: #dfe5ed;
+  --ring: #407aea;
+  --gradient-brand: linear-gradient(135deg, #1874ed 0%, #3646e8 50%, #4c1ebc 100%);
+  --gradient-soft: linear-gradient(180deg, #f6fbff 0%, #eaf3ff 100%);
+  --gradient-mesh: radial-gradient(at 20% 0%, #bfd9ff99 0px, transparent 50%), radial-gradient(at 80% 10%, #c2c8ff80 0px, transparent 50%), radial-gradient(at 60% 60%, #b2e8fa66 0px, transparent 50%);
+  --shadow-soft: 0 1px 2px #09152c0a, 0 8px 24px -8px #09152c14;
+  --shadow-glow: 0 10px 40px -10px #0a54dd59;
+  --shadow-card: 0 1px 0 #ffffffcc inset, 0 1px 3px #09152c0f, 0 20px 50px -20px #09152c1f;
+}
+
+.dark {
+  --background: #060d1c;
+  --foreground: #f0f6fc;
+  --ink: #f4f9ff;
+  --ink-soft: #9facbe;
+  --card: #0f182b;
+  --card-foreground: #f0f6fc;
+  --popover: #0f182b;
+  --popover-foreground: #f0f6fc;
+  --primary: #609aff;
+  --primary-foreground: #020515;
+  --brand: #69a1ff;
+  --brand-foreground: #020515;
+  --brand-soft: #122750;
+  --secondary: #151f32;
+  --secondary-foreground: #f0f6fc;
+  --muted: #151f32;
+  --muted-foreground: #99a6b8;
+  --accent: #1a2846;
+  --accent-foreground: #f0f6fc;
+  --destructive: #ff6367;
+  --destructive-foreground: #f7f9fa;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.26);
+  --ring: #609aff;
+  --gradient-brand: linear-gradient(135deg, #1c80ff 0%, #4956fa 50%, #642dd2 100%);
+  --gradient-soft: linear-gradient(180deg, #091123 0%, #101836 100%);
+  --gradient-mesh: radial-gradient(at 20% 0%, #004fb073 0px, transparent 50%), radial-gradient(at 80% 10%, #4a29b266 0px, transparent 50%), radial-gradient(at 60% 60%, #00516559 0px, transparent 50%);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 10px 50px -10px rgba(88, 118, 255, 0.55);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 1px 3px rgba(0, 0, 0, 0.4), 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fallback transitions for legacy browsers */
+body, nav, .glass, .glass-dark, .bg-card, input, button {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-soft);
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(223, 229, 237, 0.8);
+}
+
+.dark .glass {
+  background: rgba(15, 24, 43, 0.7);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid rgba(10, 84, 221, 0.14);
+}
+
+.dark .glass-dark {
+  background: rgba(15, 24, 43, 0.55);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid rgba(105, 161, 255, 0.2);
+}
+
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.mesh-bg {
+  background-image: var(--gradient-mesh);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Lenis Scroll Base Styling */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   View Transitions API styles (circular reveal animation support)
+   ========================================================================== */
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+/* Ensure the old view stays beneath the new circular reveal view */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
