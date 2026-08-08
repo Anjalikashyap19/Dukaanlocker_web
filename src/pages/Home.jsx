@@ -21,21 +21,6 @@ export default function Home() {
     { id: 6, name: 'Labour License', expiry: 240, status: 'Active' },
   ]);
 
-  const score = Math.round(
-    documents.reduce((acc, doc) => {
-      const val = doc.status === 'Active' ? 100 : doc.status === 'Renew Soon' ? 90 : 60;
-      return acc + val;
-    }, 0) / documents.length
-  );
-
-  const renewDocument = (id) => {
-    setDocuments((prev) =>
-      prev.map((doc) =>
-        doc.id === id ? { ...doc, status: 'Active', expiry: 365 } : doc
-      )
-    );
-  };
-
   const handleDocumentFetched = (docName) => {
     setDocuments((prev) => {
       const exists = prev.find((d) => d.name.toLowerCase() === docName.toLowerCase());
@@ -55,12 +40,7 @@ export default function Home() {
 
   return (
     <>
-      <Hero
-        documents={documents}
-        score={score}
-        renewDocument={renewDocument}
-        onComingSoon={openComingSoon}
-      />
+      <Hero onComingSoon={openComingSoon} />
       <WhyStruggle />
       <Features />
       <HowItWorks />

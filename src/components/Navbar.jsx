@@ -100,7 +100,12 @@ export default function Navbar({ theme, toggleTheme }) {
             </button>
             <button
               onClick={openGetStarted}
-              className="group flex items-center gap-1.5 rounded-xl bg-[var(--gradient-brand)] px-4 py-2 text-sm font-semibold  shadow-glow transition hover:opacity-95 hover:shadow-[0_15px_50px_-12px_oklch(0.5_0.22_262/0.6)] cursor-pointer"
+              style={{ background: 'var(--gradient-brand)' }}
+              className={`group flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold text-white transition hover:opacity-95 ${
+                theme === 'dark'
+                  ? 'shadow-[0_8px_28px_-6px_rgba(88,118,255,0.7)] ring-1 ring-white/25 hover:shadow-[0_12px_36px_-6px_rgba(88,118,255,0.85)]'
+                  : 'shadow-[0_8px_24px_-6px_rgba(10,84,221,0.5)] ring-1 ring-white/90 hover:shadow-[0_12px_32px_-6px_rgba(10,84,221,0.65)]'
+              }`}
             >
               Get Started
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -173,7 +178,12 @@ export default function Navbar({ theme, toggleTheme }) {
                   setIsOpen(false);
                   openGetStarted();
                 }}
-                className="w-full text-center py-2.5 rounded-xl bg-[var(--gradient-brand)] text-sm font-semibold text-white shadow-glow cursor-pointer"
+                style={{ background: 'var(--gradient-brand)' }}
+                className={`w-full cursor-pointer rounded-xl py-2.5 text-center text-sm font-semibold text-white ${
+                  theme === 'dark'
+                    ? 'shadow-[0_8px_28px_-6px_rgba(88,118,255,0.7)] ring-1 ring-white/25'
+                    : 'shadow-[0_8px_24px_-6px_rgba(10,84,221,0.5)] ring-1 ring-white/90'
+                }`}
               >
                 Get Started Free
               </button>

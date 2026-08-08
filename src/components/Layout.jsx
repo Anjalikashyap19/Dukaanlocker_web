@@ -113,7 +113,7 @@ export default function Layout() {
       <div className="min-h-screen bg-background text-foreground">
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         <main key={pathname} className="animate-page-in">
-          <Outlet />
+          <Outlet context={{ theme }} />
         </main>
         <Footer />
       </div>
