@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Database, RefreshCw, CheckCircle, Terminal, Play, Check } from 'lucide-react';
+import { useScrollRevealAll } from '../hooks/usePremium';
 
 export default function GovernmentIntegrations({ onDocumentFetched }) {
+  const sectionRef = useScrollRevealAll();
   const [activeTab, setActiveTab] = useState('gst');
   const [inputs, setInputs] = useState({
     gst: '',
@@ -82,10 +84,10 @@ export default function GovernmentIntegrations({ onDocumentFetched }) {
   };
 
   return (
-    <section className="relative py-24 border-t border-border bg-gradient-to-b from-transparent to-brand-soft/20 dark:to-brand-soft/5">
+    <section className="relative py-24 border-t border-border bg-gradient-to-b from-transparent to-brand-soft/20 dark:to-brand-soft/5" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-4">
         {/* Title */}
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="reveal mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
             Integrations
           </div>
@@ -95,10 +97,11 @@ export default function GovernmentIntegrations({ onDocumentFetched }) {
           <p className="mt-4 text-base text-ink-soft sm:text-lg">
             Fetch, verify and import licenses in one tap. No logging into legacy municipal or central government websites.
           </p>
+          <div className="section-line" aria-hidden="true" />
         </div>
 
         {/* Flex layout for Interactive Fetcher + Code Block */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+        <div className="reveal-stagger mt-14 grid gap-8 lg:grid-cols-2">
           {/* Left panel: Fetcher input controls */}
           <div className="rounded-3xl glass p-5 sm:p-6 shadow-card flex flex-col justify-between">
             <div>

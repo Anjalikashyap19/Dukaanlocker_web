@@ -1,23 +1,12 @@
 import React from 'react';
 import {
-  Rocket,
-  HeartHandshake,
-  TrendingUp,
-  Crown,
-  GraduationCap,
-  Users,
-  Briefcase,
-  BellRing,
-  Target,
-  Zap,
-  Coffee,
-  Globe,
-  Sparkles,
-  ArrowRight,
-  Check,
+  Rocket, HeartHandshake, TrendingUp, Crown, GraduationCap,
+  Users, Briefcase, BellRing, Target, Zap, Coffee,
+  Globe, Sparkles, ArrowRight, Check,
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { useComingSoon } from '../context/ComingSoonContext';
+import { useScrollRevealAll } from '../hooks/usePremium';
 
 const whyWork = [
   {
@@ -84,6 +73,9 @@ const perks = [
 
 export default function Careers() {
   const openComingSoon = useComingSoon();
+  const whyRef    = useScrollRevealAll();
+  const cultureRef = useScrollRevealAll();
+  const perksRef  = useScrollRevealAll();
 
   const notifyMe = () =>
     openComingSoon({
@@ -102,7 +94,8 @@ export default function Careers() {
       >
         <button
           onClick={notifyMe}
-          className="group inline-flex items-center gap-2 rounded-xl bg-[var(--gradient-brand)] px-5 py-3 text-sm font-semibold  shadow-glow transition hover:opacity-95 cursor-pointer"
+          className="group inline-flex items-center gap-2 rounded-xl bg-[var(--gradient-brand)] px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer"
+          style={{ background: 'var(--gradient-brand)' }}
         >
           <BellRing className="h-4 w-4" />
           Notify Me About Roles
@@ -112,13 +105,13 @@ export default function Careers() {
       {/* Stats bar */}
       <section className="relative -mt-8 pb-8">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="reveal-stagger grid grid-cols-3 gap-4">
             {[
               { value: '6.4 Cr+', label: 'Users We Serve' },
               { value: 'Remote', label: 'Work Mode' },
               { value: 'Fast', label: 'Growth Stage' },
             ].map((stat) => (
-              <div key={stat.label} className="text-center p-4 rounded-2xl bg-card shadow-soft ring-1 ring-border">
+              <div key={stat.label} className="text-center p-4 rounded-2xl bg-card shadow-soft ring-1 ring-border card-hover">
                 <div className="font-display text-2xl font-extrabold gradient-text">{stat.value}</div>
                 <div className="mt-0.5 text-xs text-ink-soft">{stat.label}</div>
               </div>
@@ -128,9 +121,15 @@ export default function Careers() {
       </section>
 
       {/* Why work with us */}
-      <section className="relative py-20 border-t border-border">
+      <section className="relative py-20 border-t border-border overflow-hidden" ref={whyRef}>
+        {/* Animated mesh background */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-60 mesh-animated"
+          style={{ backgroundImage: 'var(--gradient-mesh)' }}
+          aria-hidden="true"
+        />
         <div className="mx-auto max-w-7xl px-4">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="reveal mx-auto max-w-2xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
               Why Work With Us
             </div>
@@ -140,19 +139,21 @@ export default function Careers() {
             <p className="mt-4 text-base text-ink-soft">
               Join a team that's redefining compliance for India's small businesses — and grow with us.
             </p>
+            <div className="section-line" aria-hidden="true" />
           </div>
-          <div className="mt-14 grid gap-6 sm:grid-cols-3">
+          <div className="reveal-stagger mt-14 grid gap-6 sm:grid-cols-3">
             {whyWork.map((item) => (
               <div
                 key={item.title}
-                className="group relative overflow-hidden rounded-2xl bg-card p-7 shadow-soft ring-1 ring-border transition hover:-translate-y-1 hover:shadow-card"
+                className="group relative overflow-hidden rounded-2xl bg-card p-7 shadow-soft ring-1 ring-border card-hover"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30 dark:opacity-10`} />
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand opacity-0 blur-2xl transition duration-500 group-hover:opacity-15" aria-hidden="true" />
                 <div className="relative">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-[var(--gradient-brand)]  shadow-glow">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl shadow-glow transition group-hover:scale-110" style={{ background: 'var(--gradient-brand)' }}>
                     {item.icon}
                   </div>
-                  <h3 className="mt-5 font-display text-base font-bold text-ink">{item.title}</h3>
+                  <h3 className="mt-5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{item.title}</h3>
                   <p className="mt-1.5 text-sm text-ink-soft leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -162,9 +163,9 @@ export default function Careers() {
       </section>
 
       {/* Work culture */}
-      <section className="relative py-20 border-t border-border bg-gradient-to-b from-transparent to-brand-soft/20 dark:to-brand-soft/5">
+      <section className="relative py-20 border-t border-border bg-gradient-to-b from-transparent to-brand-soft/20 dark:to-brand-soft/5" ref={cultureRef}>
         <div className="mx-auto max-w-7xl px-4">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="reveal mx-auto max-w-2xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
               Work Culture
             </div>
@@ -174,18 +175,19 @@ export default function Careers() {
             <p className="mt-4 text-base text-ink-soft">
               A culture built on trust, transparency, and the shared mission of transforming compliance in India.
             </p>
+            <div className="section-line" aria-hidden="true" />
           </div>
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="reveal-stagger mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {culture.map((item) => (
               <div
                 key={item.title}
-                className="flex gap-4 rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border transition hover:-translate-y-0.5 hover:shadow-card"
+                className="group flex gap-4 rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover"
               >
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[var(--gradient-brand)]  shadow-glow">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg shadow-glow transition group-hover:scale-110" style={{ background: 'var(--gradient-brand)' }}>
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="font-display text-base font-bold text-ink">{item.title}</h3>
+                  <h3 className="font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{item.title}</h3>
                   <p className="mt-1.5 text-sm text-ink-soft leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -195,10 +197,10 @@ export default function Careers() {
       </section>
 
       {/* Perks & Benefits */}
-      <section className="relative py-20 border-t border-border">
+      <section className="relative py-20 border-t border-border" ref={perksRef}>
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
-            <div>
+            <div className="reveal">
               <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
                 <Sparkles className="h-3 w-3" /> Perks & Benefits
               </div>
@@ -257,7 +259,8 @@ export default function Careers() {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <button
                 onClick={notifyMe}
-                className="group inline-flex items-center gap-2 rounded-xl bg-[var(--gradient-brand)] px-6 py-3 text-sm font-semibold  shadow-glow transition hover:opacity-95 cursor-pointer"
+                className="group inline-flex items-center gap-2 rounded-xl bg-[var(--gradient-brand)] px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer"
+                style={{ background: 'var(--gradient-brand)' }}
               >
                 <BellRing className="h-4 w-4" />
                 Notify Me When Roles Open

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Lock, Sun, Moon, Menu, X, ArrowRight } from 'lucide-react';
 import { useComingSoon } from '../context/ComingSoonContext';
 
@@ -7,14 +7,26 @@ export default function Navbar({ theme, toggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const openComingSoon = useComingSoon();
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+  const [isPastIntro, setIsPastIntro] = useState(!isHomePage);
 
   useEffect(() => {
+    if (!isHomePage) {
+      setIsPastIntro(true);
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      const threshold = window.innerHeight * 0.6;
+      setIsPastIntro(window.scrollY >= threshold);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   const navLinks = [
     { name: 'Home', to: '/' },
@@ -40,13 +52,21 @@ export default function Navbar({ theme, toggleTheme }) {
     });
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
+        isScrolled ? 'py-2' : 'py-4'
+      } ${
+        !isPastIntro
+          ? '-translate-y-full opacity-0 pointer-events-none'
+          : 'translate-y-0 opacity-100 pointer-events-auto'
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4">
         <nav className="glass flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--gradient-brand)] shadow-glow">
-              <Lock className="h-[1.125rem] w-[1.125rem] " />
+            <div className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--gradient-brand)] shadow-glow" style={{ background: 'var(--gradient-brand)' }}>
+              <Lock className="h-[1.125rem] w-[1.125rem] text-white" />
             </div>
             <span className="font-display text-lg font-bold tracking-tight text-ink">
               Dukaan<span className="gradient-text">Locker</span>
@@ -54,18 +74,28 @@ export default function Navbar({ theme, toggleTheme }) {
           </Link>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden items-center gap-7 lg:flex">
+          <ul className="hidden items-center gap-7 lg:flex" role="navigation" aria-label="Main navigation">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <NavLink
                   to={link.to}
                   className={({ isActive }) =>
-                    `text-sm font-medium transition-colors hover:text-ink ${
+                    `relative text-sm font-medium transition-colors hover:text-ink group ${
                       isActive ? 'text-ink' : 'text-ink-soft'
                     }`
                   }
                 >
-                  {link.name}
+                  {({ isActive }) => (
+                    <>
+                      {link.name}
+                      <span
+                        className={`absolute -bottom-0.5 left-0 h-[2px] rounded-full bg-[var(--gradient-brand)] transition-all duration-300 ${
+                          isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </>
+                  )}
                 </NavLink>
               </li>
             ))}
@@ -100,7 +130,8 @@ export default function Navbar({ theme, toggleTheme }) {
             </button>
             <button
               onClick={openGetStarted}
-              className="group flex items-center gap-1.5 rounded-xl bg-[var(--gradient-brand)] px-4 py-2 text-sm font-semibold  shadow-glow transition hover:opacity-95 hover:shadow-[0_15px_50px_-12px_oklch(0.5_0.22_262/0.6)] cursor-pointer"
+              className="group flex items-center gap-1.5 rounded-xl bg-[var(--gradient-brand)] px-4 py-2 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 hover:shadow-[0_15px_50px_-12px_oklch(0.5_0.22_262/0.6)] cursor-pointer"
+              style={{ background: 'var(--gradient-brand)' }}
             >
               Get Started
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

@@ -1,0 +1,1207 @@
+/* ==========================================================================
+   MSME-Powered Onboarding Section — Sticky Scroll-Driven Showcase Styles
+   ========================================================================== */
+
+/* Outer Scroll Track: provides scroll depth for sticky presentation */
+.msme-scroll-track {
+  position: relative;
+  min-height: 220vh;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, 
+    color-mix(in srgb, var(--background) 94%, #ecf2ff) 0%, 
+    var(--background) 48%, 
+    color-mix(in srgb, var(--background) 96%, #e8f0fe) 100%
+  );
+  font-family: var(--font-sans, 'Inter', ui-sans-serif, system-ui, sans-serif);
+}
+
+.dark .msme-scroll-track {
+  background: 
+    radial-gradient(circle at 20% 35%, rgba(24, 116, 237, 0.15), transparent 32rem),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1), transparent 35rem),
+    linear-gradient(180deg, #071022 0%, #050b18 52%, #030b19 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Sticky Frame: pins during scroll */
+.msme-sticky-frame {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem 0;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+/* Background Atmospheric Effects */
+.msme-bg-glow {
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(24, 116, 237, 0.22) 0%, rgba(54, 70, 232, 0.08) 50%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .msme-bg-glow {
+  background: radial-gradient(circle, rgba(24, 116, 237, 0.3) 0%, rgba(99, 102, 241, 0.14) 50%, transparent 70%);
+}
+
+.msme-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(10, 84, 221, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .msme-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  opacity: 0.5;
+}
+
+/* Section Container & Layout */
+.msme-container {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 3rem, 82rem);
+  margin: 0 auto;
+}
+
+.msme-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(21rem, 0.82fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN — HEADLINE, STAGE SELECTOR & OVERLAY CARD STAGE
+   ========================================================================== */
+
+.msme-content-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+  z-index: 3;
+}
+
+/* Intro & Heading */
+.msme-intro-block {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+}
+
+.msme-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid color-mix(in srgb, var(--brand) 26%, transparent);
+  border-radius: 999px;
+  padding: 0.42rem 0.8rem;
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand-soft) 60%, transparent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.msme-eyebrow.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msme-main-heading {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display, 'Sora', 'Inter', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 3.1rem);
+  font-weight: 850;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+}
+
+.msme-main-heading.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msme-heading-highlight {
+  display: block;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.msme-supporting-copy {
+  margin: 1rem 0 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.msme-supporting-copy.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stage Navigation Tabs */
+.msme-stage-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.msme-stage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  backdrop-filter: blur(10px);
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dark .msme-stage-pill {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.msme-stage-pill:hover {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+}
+
+.msme-stage-pill.is-current {
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 60%, transparent);
+  background: color-mix(in srgb, var(--brand-soft) 80%, transparent);
+  box-shadow: 0 2px 14px rgba(10, 84, 221, 0.18);
+}
+
+.dark .msme-stage-pill.is-current {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 2px 16px rgba(24, 116, 237, 0.25);
+}
+
+.msme-stage-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.msme-stage-pill-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 800;
+  font-size: 0.72rem;
+}
+
+.msme-stage-pill-label {
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   FIXED CARD STAGE — STEP 02 OVERLAYS/REPLACES STEP 01
+   ========================================================================== */
+
+.msme-card-stage {
+  position: relative;
+  display: grid;
+  grid-template-areas: "card";
+  width: 100%;
+  max-width: 38rem;
+  margin-top: 0.25rem;
+}
+
+.msme-step-card {
+  grid-area: card;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 2.4rem;
+  border-radius: 1.45rem;
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 1rem 2.5rem -1.5rem rgba(9, 21, 44, 0.25);
+  cursor: pointer;
+  user-select: none;
+  transition: 
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+  will-change: transform, opacity;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dark .msme-step-card {
+  background: rgba(13, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1.25rem 3rem -1.25rem rgba(0, 0, 0, 0.7);
+}
+
+/* 1. Step 01 entering smoothly from left */
+.msme-step-card.is-entering-left {
+  opacity: 0;
+  transform: translateX(-70px);
+  pointer-events: none;
+}
+
+/* 2. Step active state (visually dominant, blue border & active glow) */
+.msme-step-card.is-active {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  pointer-events: auto;
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--card) 98%, transparent);
+  box-shadow: 
+    0 0 35px -5px rgba(24, 116, 237, 0.32),
+    0 1.25rem 3rem -1.25rem rgba(10, 84, 221, 0.28),
+    0 0 0 1px color-mix(in srgb, var(--brand) 25%, transparent) inset;
+}
+
+.dark .msme-step-card.is-active {
+  border-color: rgba(56, 189, 248, 0.65);
+  background: rgba(13, 23, 42, 0.9);
+  box-shadow: 
+    0 0 40px -5px rgba(24, 116, 237, 0.4),
+    0 1.25rem 3.5rem -1.25rem rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(96, 165, 250, 0.3) inset;
+}
+
+/* 3. Step 01 exiting upward while Step 02 enters */
+.msme-step-card.is-exited-up {
+  opacity: 0;
+  transform: translateY(-28px) scale(0.97);
+  pointer-events: none;
+}
+
+/* 4. Step 02 waiting downward before being scrolled into */
+.msme-step-card.is-waiting-down {
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  pointer-events: none;
+}
+
+/* Header within card */
+.msme-feature-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.msme-feature-num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--brand-soft) 80%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--brand) 30%, transparent);
+  color: var(--brand);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.dark .msme-feature-num-badge {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+/* Active stage pill inside card */
+.msme-active-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  animation: active-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes active-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+  }
+}
+
+.msme-active-indicator-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.msme-feature-title {
+  margin: 0 0 0.75rem 0;
+  color: var(--ink);
+  font-family: var(--font-display, 'Sora', 'Inter', sans-serif);
+  font-size: clamp(1.35rem, 1.9vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.dark .msme-feature-title {
+  color: #ffffff;
+}
+
+.msme-feature-desc {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.dark .msme-feature-desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Benefit Chips Row */
+.msme-benefit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 38rem;
+  padding-top: 0.5rem;
+}
+
+.msme-benefit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 75%, transparent);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.dark .msme-benefit-chip {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.msme-benefit-chip:hover {
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+  transform: translateY(-2px);
+}
+
+.msme-benefit-chip svg {
+  color: var(--brand);
+}
+
+.dark .msme-benefit-chip svg {
+  color: #38bdf8;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN — TILTED SMARTPHONE MOCKUP WITH SYNCHRONIZED SCREENS
+   ========================================================================== */
+
+.msme-phone-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  padding: 1rem 0;
+}
+
+.msme-phone-stage {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
+}
+
+/* Floor pedestal ambient glow */
+.msme-phone-pedestal-glow {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 290px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(24, 116, 237, 0.45) 0%, rgba(54, 70, 232, 0.18) 45%, transparent 75%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Tilted Smartphone Mockup: keeps slight rightward tilt */
+.msme-phone-wrapper {
+  position: relative;
+  z-index: 2;
+  transform: rotate(6.5deg);
+  transform-origin: center center;
+  animation: msme-float 6s ease-in-out infinite;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+@keyframes msme-float {
+  0%, 100% {
+    transform: rotate(6.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(6.5deg) translateY(-8px);
+  }
+}
+
+.msme-phone-frame {
+  position: relative;
+  width: 310px;
+  height: 605px;
+  background: #060c1c;
+  border-radius: 44px;
+  border: 9px solid #141b2c;
+  overflow: hidden;
+  box-shadow: 
+    20px 32px 75px -12px rgba(3, 8, 22, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+    0 0 45px -10px rgba(24, 116, 237, 0.28);
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .msme-phone-frame {
+  border: 9px solid #0f172a;
+  box-shadow: 
+    22px 34px 85px -10px rgba(0, 0, 0, 0.95),
+    0 0 0 1.5px rgba(255, 255, 255, 0.08) inset,
+    0 0 50px -10px rgba(24, 116, 237, 0.35);
+}
+
+/* Dynamic Notch / Island */
+.msme-phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 105px;
+  height: 27px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.msme-phone-speaker {
+  width: 36px;
+  height: 5px;
+  background: #1c1c1e;
+  border-radius: 3px;
+}
+
+.msme-phone-camera {
+  width: 10px;
+  height: 10px;
+  background: #141416;
+  border-radius: 50%;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.9), inset 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+/* iOS Status Bar */
+.msme-phone-status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 22px;
+  z-index: 25;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.msme-phone-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* DukaanLocker In-App Header */
+.msme-phone-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 42px 1rem 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 9, 24, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 20;
+}
+
+.msme-phone-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.msme-phone-logo {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  place-items: center;
+  border-radius: 0.45rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1874ed 0%, #3646e8 100%);
+  box-shadow: 0 2px 8px rgba(24, 116, 237, 0.4);
+}
+
+.msme-phone-secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #22c55e;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+}
+
+/* Phone Screen Viewport */
+.msme-phone-viewport {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #091224 0%, #030815 100%);
+}
+
+/* Phone Slide: Polished transition inside device */
+.msme-phone-slide {
+  position: absolute;
+  inset: 0;
+  padding: 1.1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: 
+    opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), 
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.msme-phone-slide.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.msme-phone-slide.is-prev {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.96);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.msme-phone-slide.is-next {
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Elements inside Phone Screens */
+.msme-screen-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  align-self: flex-start;
+  margin-bottom: 0.45rem;
+}
+
+.msme-screen-title {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.35rem 0;
+}
+
+.msme-screen-desc {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  margin: 0 0 1.1rem 0;
+}
+
+/* Screen 1: MSME Registration Input Box */
+.msme-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.msme-input-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.msme-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.72rem 0.85rem;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.msme-input-box svg {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.msme-input-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.msme-input-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1rem;
+  background: #38bdf8;
+  animation: cursor-blink 1s infinite;
+  margin-left: -2px;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.msme-cta-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1rem;
+  border-radius: 0.85rem;
+  border: none;
+  background: linear-gradient(135deg, #1874ed 0%, #3646e8 50%, #4c1ebc 100%);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px -4px rgba(24, 116, 237, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.msme-cta-button:hover {
+  opacity: 0.95;
+}
+
+.msme-slide1-trust {
+  margin-top: 1.1rem;
+  padding: 0.75rem;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.msme-slide1-trust svg {
+  color: #22c55e;
+  flex-shrink: 0;
+}
+
+.msme-slide1-trust p {
+  margin: 0;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+/* Screen 2: Automatic Document Fetching */
+.msme-verify-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.65rem;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.msme-verify-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.msme-spin-icon {
+  animation: spin 2.5s linear infinite;
+  color: #38bdf8;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.msme-progress-bar-bg {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+}
+
+.msme-progress-bar-fill {
+  height: 100%;
+  width: 85%;
+  background: linear-gradient(90deg, #38bdf8 0%, #22c55e 100%);
+  border-radius: 999px;
+  animation: progress-shimmer 2s ease-in-out infinite alternate;
+}
+
+@keyframes progress-shimmer {
+  0% { width: 68%; }
+  100% { width: 94%; }
+}
+
+.msme-doc-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.msme-doc-card {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.msme-doc-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.55rem;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.msme-doc-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 750;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.msme-doc-detail {
+  margin: 0.1rem 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.6rem;
+}
+
+.msme-doc-badge {
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.msme-doc-badge.verified {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.msme-doc-badge.available {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.msme-doc-badge.synced {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.msme-slide3-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.msme-slide3-footer svg {
+  color: #22c55e;
+}
+
+.msme-phone-home-indicator {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* Quick Slide Controls beneath Phone */
+.msme-slide-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  z-index: 10;
+}
+
+.msme-slide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dark .msme-slide-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.msme-slide-btn:hover {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+}
+
+.msme-slide-btn.is-current {
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 60%, transparent);
+  background: color-mix(in srgb, var(--brand-soft) 80%, transparent);
+  box-shadow: 0 2px 10px rgba(10, 84, 221, 0.15);
+}
+
+.dark .msme-slide-btn.is-current {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 2px 12px rgba(24, 116, 237, 0.22);
+}
+
+.msme-slide-btn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .msme-scroll-track {
+    min-height: 190vh;
+  }
+
+  .msme-sticky-frame {
+    height: 100dvh;
+    padding: 1.5rem 0;
+  }
+
+  .msme-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .msme-content-column {
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .msme-intro-block {
+    align-items: center;
+    text-align: center;
+  }
+
+  .msme-eyebrow {
+    align-self: center;
+  }
+
+  .msme-stage-nav {
+    justify-content: center;
+  }
+
+  .msme-card-stage {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .msme-step-card {
+    padding: 1.6rem 1.6rem;
+    text-align: left;
+  }
+
+  .msme-benefit-chips {
+    justify-content: center;
+  }
+
+  /* Compact Phone Mockup on Tablet */
+  .msme-phone-column {
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+
+  .msme-phone-stage {
+    max-width: 290px;
+  }
+
+  .msme-phone-wrapper {
+    transform: rotate(3.5deg) scale(0.85);
+    animation: none;
+  }
+
+  .msme-phone-frame {
+    width: 290px;
+    height: 520px;
+  }
+
+  .msme-slide-controls {
+    display: none; /* Stage nav above is sufficient */
+  }
+}
+
+@media (max-width: 640px) {
+  .msme-scroll-track {
+    min-height: 180vh;
+  }
+
+  .msme-sticky-frame {
+    padding: 1rem 0;
+  }
+
+  .msme-main-heading {
+    font-size: 1.65rem;
+  }
+
+  .msme-supporting-copy {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-top: 0.6rem;
+  }
+
+  .msme-stage-pill {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .msme-step-card {
+    padding: 1.35rem 1.25rem;
+    border-radius: 1.2rem;
+  }
+
+  .msme-feature-title {
+    font-size: 1.15rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .msme-feature-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .msme-benefit-chips {
+    gap: 0.4rem;
+  }
+
+  .msme-benefit-chip {
+    font-size: 0.72rem;
+    padding: 0.38rem 0.65rem;
+  }
+
+  /* Compact Phone on Mobile to avoid screen cut-off */
+  .msme-phone-stage {
+    max-width: 260px;
+  }
+
+  .msme-phone-wrapper {
+    transform: rotate(2deg) scale(0.72);
+    transform-origin: top center;
+  }
+
+  .msme-phone-frame {
+    width: 280px;
+    height: 500px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .msme-phone-wrapper {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .msme-step-card {
+    transition: opacity 0.1s linear !important;
+    transform: none !important;
+  }
+
+  .msme-phone-slide {
+    transition: opacity 0.1s linear !important;
+    transform: none !important;
+  }
+
+  .msme-active-indicator,
+  .msme-progress-bar-fill,
+  .msme-spin-icon,
+  .msme-input-cursor {
+    animation: none !important;
+  }
+}
+

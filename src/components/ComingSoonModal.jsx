@@ -90,7 +90,8 @@ export default function ComingSoonModal({ isOpen, onClose, title, description, s
                 </div>
                 <button
                   type="submit"
-                  className="group flex items-center justify-center gap-1.5 rounded-lg bg-[var(--gradient-brand)] px-4 py-2 text-xs font-semibold  shadow-glow transition hover:opacity-95 cursor-pointer shrink-0"
+                  className="group flex items-center justify-center gap-1.5 rounded-lg bg-[var(--gradient-brand)] px-4 py-2 text-xs font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer shrink-0"
+                  style={{ background: 'var(--gradient-brand)' }}
                 >
                   <Bell className="h-3.5 w-3.5" />
                   Notify

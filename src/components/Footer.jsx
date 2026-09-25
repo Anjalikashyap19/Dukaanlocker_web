@@ -134,17 +134,18 @@ export default function Footer() {
             <button
               type="submit"
               disabled={subscribed}
-              className="group flex items-center justify-center gap-1.5 rounded-xl bg-[var(--gradient-brand)] px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 disabled:opacity-80 cursor-pointer"
+              className="group flex items-center justify-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-glow transition hover:opacity-95 disabled:opacity-80 cursor-pointer shrink-0"
+              style={{ background: 'var(--gradient-brand)' }}
             >
               {subscribed ? (
                 <>
-                  <Check className="h-4 w-4" />
-                  Subscribed
+                  <Check className="h-4 w-4 text-white" />
+                  <span className="text-white">Subscribed</span>
                 </>
               ) : (
                 <>
-                  <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  Subscribe
+                  <Send className="h-4 w-4 text-white transition-transform group-hover:translate-x-0.5" />
+                  <span className="text-white font-semibold">Subscribe</span>
                 </>
               )}
             </button>
@@ -156,7 +157,7 @@ export default function Footer() {
           {/* Brand col */}
           <div className="sm:col-span-2">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--gradient-brand)] shadow-glow">
+              <div className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--gradient-brand)] shadow-glow" style={{ background: 'var(--gradient-brand)' }}>
                 <Lock className="h-4 w-4 text-white" />
               </div>
               <span className="font-display text-base font-bold tracking-tight text-ink">
@@ -169,13 +170,13 @@ export default function Footer() {
             
             {/* Contact info */}
             <div className="mt-4 space-y-2">
-              <div className="flex items-center gap-2 text-xs text-ink-soft">
-                <MapPin className="h-3.5 w-3.5 text-brand" />
-                Bengaluru · Mumbai · Delhi NCR, India
+              <div className="flex items-start gap-2 text-xs text-ink-soft">
+                <MapPin className="h-3.5 w-3.5 text-brand shrink-0 mt-0.5" />
+                <span>Sathyabama collage Rd, Kamaraj Nagar, Semmencheri, Chennai, Tamil Nadu 600119</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-ink-soft">
-                <Mail className="h-3.5 w-3.5 text-brand" />
-                <a href="mailto:hello@dukaanlocker.in" className="hover:text-ink transition-colors">hello@duukaanlocker.in</a>
+                <Mail className="h-3.5 w-3.5 text-brand shrink-0" />
+                <a href="mailto:support@indiaadvocacy.in" className="hover:text-ink transition-colors">support@indiaadvocacy.in</a>
               </div>
             </div>
 

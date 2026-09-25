@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { ComingSoonProvider } from '../context/ComingSoonContext';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -16,7 +20,7 @@ export default function Layout() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
-  // ── Lenis Smooth Scroll ──────────────────────────────────────────────
+  // ── Lenis Smooth Scroll + GSAP Integration ──────────────────────────
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -25,14 +29,22 @@ export default function Layout() {
       touchMultiplier: 2,
     });
     lenisRef.current = lenis;
+    window.__lenis = lenis;
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    lenis.on('scroll', ScrollTrigger.update);
 
-    return () => lenis.destroy();
+    const gsapTicker = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(gsapTicker);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      window.__lenis = null;
+      gsap.ticker.remove(gsapTicker);
+      lenis.destroy();
+    };
   }, []);
 
   // ── Scroll to top on route change ────────────────────────────────────
@@ -48,16 +60,17 @@ export default function Layout() {
   const applyThemeClass = useCallback((newTheme) => {
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
     localStorage.setItem('theme', newTheme);
   }, []);
 
   useEffect(() => {
     applyThemeClass(theme);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [theme, applyThemeClass]);
 
   // ── Premium Circular Reveal Theme Toggle ─────────────────────────────
   const toggleTheme = useCallback(
@@ -65,8 +78,8 @@ export default function Layout() {
       if (isAnimating.current) return;
 
       const newTheme = theme === 'light' ? 'dark' : 'light';
-      const x = e.clientX;
-      const y = e.clientY;
+      const x = e?.clientX ?? (window.innerWidth / 2);
+      const y = e?.clientY ?? (window.innerHeight / 2);
       const endRadius = Math.hypot(
         Math.max(x, window.innerWidth - x),
         Math.max(y, window.innerHeight - y)
@@ -79,31 +92,45 @@ export default function Layout() {
       }
 
       isAnimating.current = true;
+      const unlockSafety = setTimeout(() => {
+        isAnimating.current = false;
+      }, 850);
 
-      const transition = document.startViewTransition(() => {
+      try {
+        const transition = document.startViewTransition(() => {
+          setTheme(newTheme);
+          applyThemeClass(newTheme);
+        });
+
+        transition.ready
+          .then(() => {
+            document.documentElement.animate(
+              {
+                clipPath: [
+                  `circle(0px at ${x}px ${y}px)`,
+                  `circle(${endRadius}px at ${x}px ${y}px)`,
+                ],
+              },
+              {
+                duration: 700,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                pseudoElement: '::view-transition-new(root)',
+              }
+            );
+          })
+          .catch(() => {});
+
+        transition.finished
+          .finally(() => {
+            clearTimeout(unlockSafety);
+            isAnimating.current = false;
+          });
+      } catch {
+        clearTimeout(unlockSafety);
         setTheme(newTheme);
         applyThemeClass(newTheme);
-      });
-
-      transition.ready.then(() => {
-        document.documentElement.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`,
-            ],
-          },
-          {
-            duration: 700,
-            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            pseudoElement: '::view-transition-new(root)',
-          }
-        );
-      });
-
-      transition.finished.then(() => {
         isAnimating.current = false;
-      });
+      }
     },
     [theme, applyThemeClass]
   );
@@ -111,8 +138,11 @@ export default function Layout() {
   return (
     <ComingSoonProvider>
       <div className="min-h-screen bg-background text-foreground">
+        <a href="#main-content" className="skip-to-content">
+          Skip to content
+        </a>
         <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <main key={pathname} className="animate-page-in">
+        <main id="main-content" key={pathname} className="animate-page-in">
           <Outlet />
         </main>
         <Footer />

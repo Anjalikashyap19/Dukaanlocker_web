@@ -11,7 +11,6 @@ import {
   Lightbulb,
   Building2,
   Share2,
-  Network,
   ArrowUpRight,
   Sparkles,
   ShieldCheck,
@@ -19,15 +18,12 @@ import {
   CheckCircle,
   LockKeyhole,
   ScanLine,
-  ChevronRight,
-  Briefcase,
-  Store,
-  BadgeCheck,
-  Building,
-  HardDrive,
-  RefreshCw
+  ChevronRight
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import SpotlightText from '../components/SpotlightText';
+import MsmeOnboardingSection from '../components/MsmeOnboardingSection';
+import AuthorityIntegrations from '../components/AuthorityIntegrations';
 import { useComingSoon } from '../context/ComingSoonContext';
 import './Features.css';
 
@@ -74,215 +70,323 @@ const categories = [
   },
 ];
 
-const integrations = [
-  { name: 'GST', desc: 'Goods & Services Tax registration sync.', accent: '#38bdf8', icon: <Briefcase className="h-10 w-10 text-blue-400" /> },
-  { name: 'FSSAI', desc: 'Food safety license verification & sync.', accent: '#22c55e', icon: <BadgeCheck className="h-10 w-10 text-green-400" /> },
-  { name: 'Udyam / MSME', desc: 'MSME registration & benefits sync.', accent: '#a855f7', icon: <Store className="h-10 w-10 text-purple-400" /> },
-  { name: 'Trade License', desc: 'Municipal trade license verification.', accent: '#f59e0b', icon: <Building className="h-10 w-10 text-yellow-400" /> },
-  { name: 'DigiLocker', desc: 'National document framework integration.', accent: '#06b6d4', icon: <HardDrive className="h-10 w-10 text-cyan-400" /> },
-];
 
 function PhoneScene({ activeIndex }) {
+  const currentCategory = categories[activeIndex] || categories[0];
+
   return (
     <div className="glass-widget-box">
-      <div className="phone-stack-container">
-        {categories.map((active, index) => {
-          let stateClass = '';
-          const offset = index - activeIndex;
-          
-          if (offset === 0) stateClass = 'phone-state-active';
-          else if (offset < 0) stateClass = 'phone-state-past';
-          else stateClass = 'phone-state-future';
-
-          return (
-            <div 
-              key={active.badge}
-              className={`phone-mockup ${stateClass}`} 
-              style={{ 
-                '--feature-accent': active.accent, 
-                '--feature-accent-rgb': active.accentRgb,
-                '--phone-offset': offset,
-                zIndex: index
-              }}
-            >
-              {/* Dynamic Island / Notch */}
-              <div className="phone-notch">
-                <div className="phone-speaker"></div>
-                <div className="phone-camera"></div>
-              </div>
-
-              {/* Status Bar */}
-              <div className="phone-status-bar">
-                <span className="phone-time">9:41</span>
-                <div className="phone-status-icons">
-                  <svg width="17" height="11" viewBox="0 0 17 11" fill="none"><path d="M16 3L16 8" stroke="white" strokeWidth="2" strokeLinecap="round"/><path d="M12 1L12 10" stroke="white" strokeWidth="2" strokeLinecap="round"/><path d="M8 3L8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/><path d="M4 5L4 6" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
-                  <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 11C11.6421 11 15 7.64214 15 3.5C15 2.5 14.5 1 13 0C10.5 2.5 7.5 3.5 7.5 3.5C7.5 3.5 4.5 2.5 2 0C0.5 1 0 2.5 0 3.5C0 7.64214 3.35786 11 7.5 11Z" fill="white"/></svg>
-                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="1" y="1" width="21" height="10" rx="3" stroke="white" strokeWidth="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="white"/><path d="M24 4V8" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                </div>
-              </div>
-
-              {/* Screen Content */}
-              <div className="phone-screen">
-                 {/* Top bar like Image 2 */}
-                 <div className="phone-app-header">
-                    <div className="phone-app-brand">
-                       <span className="phone-app-logo"><LockKeyhole className="h-3 w-3" /></span>
-                       dukaanlocker
-                    </div>
-                    <span className="phone-app-secure"><ShieldCheck className="h-3.5 w-3.5" /> SECURE</span>
-                 </div>
-
-                 <div className="phone-app-content">
-                    <div className="phone-app-title-row">
-                       <span className="phone-step-counter">0{index + 1} / 0{categories.length}</span>
-                       <h3 className="phone-app-title">{active.shortTitle}</h3>
-                    </div>
-                    
-                    <div className="phone-feature-list">
-                       {active.features.map((feature, fIndex) => (
-                          <div className="phone-feature-card" key={feature.title} style={{ '--row-delay': `${fIndex * 100}ms` }}>
-                             <div className="phone-feature-icon">{feature.icon}</div>
-                             <div className="phone-feature-text">
-                                <h4>{feature.title}</h4>
-                                <p>{fIndex === 0 ? 'Synced now' : fIndex === 1 ? 'Always on' : 'Ready for you'}</p>
-                             </div>
-                             <div className="phone-feature-check"><CheckCircle className="h-4 w-4" /></div>
-                          </div>
-                       ))}
-                    </div>
-
-                    {/* Dynamic Abstract Tech visual based on active category */}
-                    <div className="phone-central-image" style={{ marginTop: 'auto', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                      {index === 0 && (
-                        <div className="doc-security-image" style={{ background: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.2)', padding: '2rem', borderRadius: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', boxShadow: 'inset 0 0 40px rgba(34,197,94,0.1)' }}>
-                          <FolderLock className="w-12 h-12 text-green-400 mb-3" />
-                          <div className="text-[10px] text-green-400/80 font-mono tracking-widest uppercase mb-1">Vault Locked</div>
-                          <div className="text-[8px] text-green-400/50 font-mono">AES-256 ENCRYPTION</div>
-                        </div>
-                      )}
-                      {index === 1 && (
-                        <div className="doc-security-image" style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '2rem', borderRadius: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', boxShadow: 'inset 0 0 40px rgba(56,189,248,0.1)' }}>
-                          <CalendarClock className="w-12 h-12 text-sky-400 mb-3" />
-                          <div className="text-[10px] text-sky-400/80 font-mono tracking-widest uppercase mb-1">Active Radar</div>
-                          <div className="text-[8px] text-sky-400/50 font-mono">REAL-TIME MONITORING</div>
-                        </div>
-                      )}
-                      {index === 2 && (
-                        <div className="doc-security-image" style={{ background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.2)', padding: '2rem', borderRadius: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', boxShadow: 'inset 0 0 40px rgba(168,85,247,0.1)' }}>
-                          <Brain className="w-12 h-12 text-purple-400 mb-3" />
-                          <div className="text-[10px] text-purple-400/80 font-mono tracking-widest uppercase mb-1">AI Copilot</div>
-                          <div className="text-[8px] text-purple-400/50 font-mono">NEURAL VERIFICATION</div>
-                        </div>
-                      )}
-                      {index === 3 && (
-                        <div className="doc-security-image" style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '2rem', borderRadius: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', boxShadow: 'inset 0 0 40px rgba(245,158,11,0.1)' }}>
-                          <Building2 className="w-12 h-12 text-amber-400 mb-3" />
-                          <div className="text-[10px] text-amber-400/80 font-mono tracking-widest uppercase mb-1">Central Sync</div>
-                          <div className="text-[8px] text-amber-400/50 font-mono">GLOBAL NETWORK NODE</div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="phone-app-footer">
-                       <div className="phone-status-indicator">
-                          <ScanLine className="h-3.5 w-3.5" style={{ color: 'var(--feature-accent)' }} />
-                          System status: optimal
-                       </div>
-                       <div className="phone-signal-bars">
-                          <i /><i /><i />
-                       </div>
-                    </div>
-                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function FutureIntegrations() {
-  return (
-    <section className="future-auth-section">
-      <div className="auth-background-effects">
-         <div className="auth-glow-top"></div>
-         <div className="auth-glow-bottom"></div>
-      </div>
-      
-      <div className="auth-container">
-        <div className="auth-heading">
-          <div className="auth-kicker"><RefreshCw className="h-3.5 w-3.5" /> FUTURE INTEGRATIONS</div>
-          <h2>Connected to every authority</h2>
-          <p>Direct sync with India's key government and compliance frameworks — rolling out soon.</p>
+      {/* Static Single Phone Mockup - Frame stays rock-solid in place */}
+      <div
+        className="phone-mockup"
+        style={{
+          '--feature-accent': currentCategory.accent,
+          '--feature-accent-rgb': currentCategory.accentRgb,
+        }}
+      >
+        {/* Dynamic Island / Notch */}
+        <div className="phone-notch">
+          <div className="phone-speaker" />
+          <div className="phone-camera" />
         </div>
 
-        <div className="auth-network-container">
-          {/* Central Shield */}
-          <div className="auth-central-shield">
-             <div className="shield-ring outer-ring"></div>
-             <div className="shield-ring inner-ring"></div>
-             <div className="shield-icon-wrapper">
-                <ShieldCheck className="h-6 w-6 text-blue-400" />
-             </div>
-             {/* Lines branching out */}
-             <div className="auth-lines">
-               <div className="auth-line line-1"></div>
-               <div className="auth-line line-2"></div>
-               <div className="auth-line line-3"></div>
-               <div className="auth-line line-4"></div>
-               <div className="auth-line line-5"></div>
-             </div>
+        {/* Status Bar */}
+        <div className="phone-status-bar">
+          <span className="phone-time">9:41</span>
+          <div className="phone-status-icons">
+            <svg width="17" height="11" viewBox="0 0 17 11" fill="none">
+              <path d="M16 3L16 8" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M12 1L12 10" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M8 3L8 8" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <path d="M4 5L4 6" stroke="white" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+              <path d="M7.5 11C11.6421 11 15 7.64214 15 3.5C15 2.5 14.5 1 13 0C10.5 2.5 7.5 3.5 7.5 3.5C7.5 3.5 4.5 2.5 2 0C0.5 1 0 2.5 0 3.5C0 7.64214 3.35786 11 7.5 11Z" fill="white" />
+            </svg>
+            <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+              <rect x="1" y="1" width="21" height="10" rx="3" stroke="white" strokeWidth="1.5" />
+              <rect x="3" y="3" width="13" height="6" rx="1.5" fill="white" />
+              <path d="M24 4V8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
           </div>
+        </div>
 
-          {/* Cards */}
-          <div className="auth-cards-grid">
-            {integrations.map((integration) => (
-              <div key={integration.name} className="auth-card" style={{ '--card-accent': integration.accent }}>
-                 <div className="auth-card-top">
-                    <div className="auth-node-icon"><Network className="h-4 w-4" /></div>
-                    <span className="auth-badge-soon">Soon</span>
-                 </div>
-                 <h3>{integration.name}</h3>
-                 <p>{integration.desc}</p>
-                 <div className="auth-card-visual">
-                    {integration.icon}
-                    <div className="auth-card-check"><CheckCircle className="h-5 w-5" style={{ color: 'var(--card-accent)' }} /></div>
-                 </div>
-                 <div className="auth-card-glow"></div>
+        {/* Static dukaanlocker App Top Bar */}
+        <div className="phone-app-header">
+          <div className="phone-app-brand">
+            <span
+              className="phone-app-logo transition-colors duration-500"
+              style={{ background: currentCategory.accent }}
+            >
+              <LockKeyhole className="h-3 w-3" />
+            </span>
+            dukaanlocker
+          </div>
+          <span
+            className="phone-app-secure transition-colors duration-500"
+            style={{ color: currentCategory.accent }}
+          >
+            <ShieldCheck className="h-3.5 w-3.5" /> SECURE
+          </span>
+        </div>
+
+        {/* Screen Viewport with smooth vertical scrolling track */}
+        <div className="phone-screen-viewport">
+          <div
+            className="phone-screen-track"
+            style={{
+              transform: `translateY(-${activeIndex * 100}%)`,
+            }}
+          >
+            {categories.map((cat, idx) => (
+              <div
+                key={cat.badge}
+                className={`phone-screen-slide ${idx === activeIndex ? 'is-active-slide' : ''}`}
+                style={{
+                  '--feature-accent': cat.accent,
+                  '--feature-accent-rgb': cat.accentRgb,
+                }}
+              >
+                {/* Category Header Row */}
+                <div className="phone-app-title-row">
+                  <div className="flex items-center justify-between">
+                    <span className="phone-step-counter">
+                      0{idx + 1} / 0{categories.length}
+                    </span>
+                    <span
+                      className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
+                      style={{
+                        background: `rgba(${cat.accentRgb}, 0.15)`,
+                        color: cat.accent,
+                        border: `1px solid rgba(${cat.accentRgb}, 0.3)`,
+                      }}
+                    >
+                      {cat.badge}
+                    </span>
+                  </div>
+                  <h3 className="phone-app-title">{cat.shortTitle}</h3>
+                </div>
+
+                {/* Feature Mini Cards */}
+                <div className="phone-feature-list">
+                  {cat.features.slice(0, 2).map((feature, fIndex) => (
+                    <div className="phone-feature-card" key={feature.title}>
+                      <div className="phone-feature-icon">{feature.icon}</div>
+                      <div className="phone-feature-text">
+                        <h4>{feature.title}</h4>
+                        <p>{fIndex === 0 ? 'Verified & Synced' : '24/7 Active'}</p>
+                      </div>
+                      <div className="phone-feature-check">
+                        <CheckCircle className="h-3.5 w-3.5" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Rich Central Visual / Image Card */}
+                <div className="phone-central-image mt-3 flex-1 flex items-center justify-center">
+                  {idx === 0 && (
+                    <div
+                      className="doc-security-image"
+                      style={{
+                        background: 'rgba(34, 197, 94, 0.08)',
+                        border: '1px solid rgba(34, 197, 94, 0.25)',
+                        padding: '1.2rem',
+                        borderRadius: '1.25rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        width: '100%',
+                        boxShadow: 'inset 0 0 30px rgba(34,197,94,0.08)',
+                      }}
+                    >
+                      <div className="relative mb-2">
+                        <FolderLock className="w-10 h-10 text-green-400" />
+                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-green-400 font-bold tracking-wider uppercase mb-0.5">
+                        Vault Encrypted
+                      </div>
+                      <div className="text-[8px] text-green-400/70 font-mono">
+                        AES-256 BANK-GRADE STORAGE
+                      </div>
+                      <div className="mt-2.5 w-full bg-black/40 rounded-lg p-2 border border-green-500/20 text-[9px] flex items-center justify-between">
+                        <span className="text-white/80">GSTIN • FSSAI • MSME</span>
+                        <span className="text-green-400 font-semibold font-mono">100% SECURE</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 1 && (
+                    <div
+                      className="doc-security-image"
+                      style={{
+                        background: 'rgba(56, 189, 248, 0.08)',
+                        border: '1px solid rgba(56, 189, 248, 0.25)',
+                        padding: '1.2rem',
+                        borderRadius: '1.25rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        width: '100%',
+                        boxShadow: 'inset 0 0 30px rgba(56,189,248,0.08)',
+                      }}
+                    >
+                      <div className="relative mb-2">
+                        <CalendarClock className="w-10 h-10 text-sky-400" />
+                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500" />
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-sky-400 font-bold tracking-wider uppercase mb-0.5">
+                        Deadline Radar
+                      </div>
+                      <div className="text-[8px] text-sky-400/70 font-mono">
+                        24/7 REAL-TIME EXPIRY TRACKING
+                      </div>
+                      <div className="mt-2.5 w-full bg-black/40 rounded-lg p-2 border border-sky-500/20 text-[9px] flex items-center justify-between">
+                        <span className="text-white/80">Trade License (4d left)</span>
+                        <span className="text-amber-400 font-semibold font-mono">ALERT SENT</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 2 && (
+                    <div
+                      className="doc-security-image"
+                      style={{
+                        background: 'rgba(168, 85, 247, 0.08)',
+                        border: '1px solid rgba(168, 85, 247, 0.25)',
+                        padding: '1.2rem',
+                        borderRadius: '1.25rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        width: '100%',
+                        boxShadow: 'inset 0 0 30px rgba(168,85,247,0.08)',
+                      }}
+                    >
+                      <div className="relative mb-2">
+                        <Brain className="w-10 h-10 text-purple-400" />
+                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500" />
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-purple-400 font-bold tracking-wider uppercase mb-0.5">
+                        AI Compliance Copilot
+                      </div>
+                      <div className="text-[8px] text-purple-400/70 font-mono">
+                        INTELLIGENT VERIFICATION
+                      </div>
+                      <div className="mt-2.5 w-full bg-black/40 rounded-lg p-2 border border-purple-500/20 text-[9px] flex items-center justify-between">
+                        <span className="text-white/80">Checklist: 4/5 complete</span>
+                        <span className="text-purple-300 font-semibold font-mono">99% ACCURACY</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 3 && (
+                    <div
+                      className="doc-security-image"
+                      style={{
+                        background: 'rgba(245, 158, 11, 0.08)',
+                        border: '1px solid rgba(245, 158, 11, 0.25)',
+                        padding: '1.2rem',
+                        borderRadius: '1.25rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        width: '100%',
+                        boxShadow: 'inset 0 0 30px rgba(245,158,11,0.08)',
+                      }}
+                    >
+                      <div className="relative mb-2">
+                        <Building2 className="w-10 h-10 text-amber-400" />
+                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500" />
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-amber-400 font-bold tracking-wider uppercase mb-0.5">
+                        Command Center
+                      </div>
+                      <div className="text-[8px] text-amber-400/70 font-mono">
+                        MULTI-SHOP SYNC &amp; CA SHARING
+                      </div>
+                      <div className="mt-2.5 w-full bg-black/40 rounded-lg p-2 border border-amber-500/20 text-[9px] flex items-center justify-between">
+                        <span className="text-white/80">3 Stores • 1 Account</span>
+                        <span className="text-amber-400 font-semibold font-mono">IN SYNC</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Footer in slide */}
+                <div className="phone-app-footer mt-auto">
+                  <div className="phone-status-indicator">
+                    <ScanLine className="h-3.5 w-3.5" style={{ color: cat.accent }} />
+                    Status: optimal
+                  </div>
+                  <div className="phone-signal-bars">
+                    <i /><i /><i />
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="auth-trust-row">
-          <span><ShieldCheck className="h-4 w-4" /> AES-256 Encrypted</span>
-          <span><ShieldCheck className="h-4 w-4" /> ISO 27001 Certified</span>
-          <span><ShieldCheck className="h-4 w-4" /> Govt API Compliant</span>
-          <span><HardDrive className="h-4 w-4" /> Data Residency India</span>
-        </div>
+        {/* Bottom iOS Home Indicator */}
+        <div className="phone-home-indicator-bar" />
       </div>
-    </section>
+    </div>
   );
 }
+
 
 function FeatureJourney() {
   const [activeIndex, setActiveIndex] = useState(0);
   const stepRefs = useRef([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const mostVisible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (mostVisible) setActiveIndex(Number(mostVisible.target.dataset.step));
-      },
-      { rootMargin: '-32% 0px -32% 0px', threshold: [0.15, 0.35, 0.55] }
-    );
-    stepRefs.current.forEach((step) => step && observer.observe(step));
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const triggerY = window.innerHeight * 0.45;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      stepRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const elementPoint = rect.top + rect.height * 0.25;
+        const distance = Math.abs(elementPoint - triggerY);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToStep = (index) => {
+    const el = stepRefs.current[index];
+    if (!el) return;
+    if (window.__lenis) {
+      window.__lenis.scrollTo(el, { duration: 1.0 });
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="feature-journey" aria-labelledby="feature-journey-title">
@@ -295,7 +399,18 @@ function FeatureJourney() {
         <aside className="feature-scene-column">
           <PhoneScene activeIndex={activeIndex} />
           <div className="feature-progress" aria-label={`Viewing step ${activeIndex + 1} of ${categories.length}`}>
-            {categories.map((category, index) => <span className={index === activeIndex ? 'is-active' : ''} key={category.badge}><i /><b>{String(index + 1).padStart(2, '0')}</b></span>)}
+            {categories.map((category, index) => (
+              <button
+                type="button"
+                onClick={() => scrollToStep(index)}
+                className={`feature-progress-dot ${index === activeIndex ? 'is-active' : ''}`}
+                key={category.badge}
+                aria-label={`Jump to ${category.title}`}
+              >
+                <i />
+                <b>{String(index + 1).padStart(2, '0')}</b>
+              </button>
+            ))}
           </div>
         </aside>
         <div className="feature-step-list">
@@ -330,12 +445,22 @@ function FeatureJourney() {
   );
 }
 
+
 export default function FeaturesPage() {
   const openComingSoon = useComingSoon();
 
   return (
     <>
-      <PageHero badge="Features" title="Everything you need to stay" highlight="100% compliant" subtitle="A single, opinionated platform that handles documents, deadlines and government requirements — so you can focus on running your business.">
+      <PageHero
+        badge="Features"
+        title="Everything you need to stay"
+        highlight="100% compliant"
+        subtitle="A single, opinionated platform that handles documents, deadlines and government requirements — so you can focus on running your business."
+        containerMaxWidth="max-w-4xl"
+        illuminatedLine={
+          <SpotlightText text="your business documents stay protected while you stay focused on your business" />
+        }
+      >
         <button
           onClick={() => openComingSoon({ title: 'Product Demo — Coming Soon', description: 'An interactive product demo is on the way. Join the waitlist and we will notify you the moment it is live.' })}
           className="inline-flex cursor-pointer items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold shadow-glow transition hover:opacity-95"
@@ -345,7 +470,8 @@ export default function FeaturesPage() {
         </button>
       </PageHero>
       <FeatureJourney />
-      <FutureIntegrations />
+      <MsmeOnboardingSection />
+      <AuthorityIntegrations />
     </>
   );
 }

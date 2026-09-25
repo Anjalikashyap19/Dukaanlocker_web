@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Building2, FileText, Brain, Database, Clock, AlertTriangle } from 'lucide-react';
+import { useScrollRevealAll } from '../hooks/usePremium';
 
 const STRUGGLES = [
   { id: 1, Icon: Building2, title: '6.4 Crore',  description: 'Businesses'       },
@@ -17,6 +18,7 @@ export default function WhyStruggle() {
   const [animOffset, setAnimOffset] = useState(90);
   const animFrameRef = useRef(null);
   const animOffsetRef = useRef(90);
+  const sectionRef = useScrollRevealAll();
 
   // Responsive radii
   const [orbitDims, setOrbitDims] = useState({ rx: 360, ry: 200 });
@@ -74,7 +76,7 @@ export default function WhyStruggle() {
   }, [animOffset, orbitDims]);
 
   return (
-    <section className="relative border-t border-slate-200 dark:border-white/5 overflow-hidden select-none text-slate-900 dark:text-white transition-colors duration-500">
+    <section id="why" className="relative border-t border-slate-200 dark:border-white/5 overflow-hidden select-none text-slate-900 dark:text-white transition-colors duration-500" ref={sectionRef}>
       {/* ── Ambient Background Glows ── */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 mix-blend-multiply dark:mix-blend-screen transition-colors duration-500"
@@ -86,7 +88,7 @@ export default function WhyStruggle() {
       />
 
       {/* ── Heading block at the top ── */}
-      <div className="relative z-[500] flex flex-col items-center justify-center w-full max-w-4xl mx-auto pt-20 px-6 text-center">
+      <div className="reveal relative z-[500] flex flex-col items-center justify-center w-full max-w-4xl mx-auto pt-20 px-6 text-center">
         <div className="inline-flex items-center gap-2 mb-6 border border-blue-200 dark:border-white/10 rounded-full bg-blue-50 dark:bg-white/5 px-4 py-1.5 backdrop-blur-md shadow-sm dark:shadow-lg transition-colors duration-500">
           <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
             The Problem
@@ -102,6 +104,7 @@ export default function WhyStruggle() {
           paperwork across dozens of departments — often without realising
           what's at stake.
         </p>
+        <div className="section-line" aria-hidden="true" />
       </div>
 
       {/* ── Auto-rotating Orbit Area ── */}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, Sparkles, ArrowRight, Zap, Shield, Users, Star, Clock } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { useComingSoon } from '../context/ComingSoonContext';
+import { useScrollRevealAll } from '../hooks/usePremium';
 
 const plans = [
   {
@@ -66,6 +67,7 @@ const features = [
 
 export default function Pricing() {
   const openComingSoon = useComingSoon();
+  const sectionRef = useScrollRevealAll();
 
   return (
     <>
@@ -84,21 +86,21 @@ export default function Pricing() {
         </div>
       </div>
 
-      <section className="relative py-16">
+      <section className="relative py-16" ref={sectionRef}>
         <div className="mx-auto max-w-7xl px-4">
           {/* Pricing cards */}
-          <div className="grid gap-6 lg:grid-cols-3 items-stretch">
+          <div className="reveal-stagger grid gap-6 lg:grid-cols-3 items-stretch">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative flex flex-col rounded-3xl p-8 shadow-card transition hover:-translate-y-1 ${
+                className={`relative flex flex-col rounded-3xl p-8 shadow-card card-hover ${
                   plan.popular
                     ? 'bg-card ring-2 ring-brand'
                     : 'bg-card ring-1 ring-border'
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--gradient-brand)] px-4 py-1 text-[11px] font-bold uppercase tracking-wider  shadow-glow flex items-center gap-1.5">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--gradient-brand)] px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-glow flex items-center gap-1.5" style={{ background: 'var(--gradient-brand)' }}>
                     <Star className="h-3 w-3" />
                     Most Popular
                   </div>
@@ -107,9 +109,9 @@ export default function Pricing() {
                 {/* Plan icon */}
                 <div className={`grid h-12 w-12 place-items-center rounded-xl ${
                   plan.popular
-                    ? 'bg-[var(--gradient-brand)]  shadow-glow'
+                    ? 'bg-[var(--gradient-brand)] text-white shadow-glow'
                     : 'bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10'
-                }`}>
+                }`} style={plan.popular ? { background: 'var(--gradient-brand)' } : {}}>
                   {plan.icon}
                 </div>
 
@@ -144,9 +146,10 @@ export default function Pricing() {
                   }
                   className={`group mt-8 flex items-center justify-center gap-1.5 rounded-xl px-5 py-3 text-sm font-semibold transition cursor-pointer ${
                     plan.popular
-                      ? 'bg-[var(--gradient-brand)]  shadow-glow hover:opacity-95'
+                      ? 'bg-[var(--gradient-brand)] text-white shadow-glow hover:opacity-95'
                       : 'border border-border bg-card text-ink shadow-soft hover:bg-secondary'
                   }`}
+                  style={plan.popular ? { background: 'var(--gradient-brand)' } : {}}
                 >
                   Join the Waitlist
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -156,7 +159,7 @@ export default function Pricing() {
           </div>
 
           {/* Included features section */}
-          <div className="mt-16 grid gap-6 sm:grid-cols-2">
+          <div className="reveal-stagger mt-16 grid gap-6 sm:grid-cols-2">
             {features.map((section) => (
               <div
                 key={section.title}

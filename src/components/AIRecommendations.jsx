@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ChefHat, ShoppingBag, Pill, Scissors, Factory, CheckSquare, Square, Info } from 'lucide-react';
+import { useScrollRevealAll } from '../hooks/usePremium';
 
 export default function AIRecommendations() {
   const [activeTab, setActiveTab] = useState('food');
   const [selectedLicenses, setSelectedLicenses] = useState({});
+  const sectionRef = useScrollRevealAll();
 
   const categories = [
     { id: 'food', name: 'Food Business', icon: <ChefHat className="h-4 w-4" /> },
@@ -54,10 +56,10 @@ export default function AIRecommendations() {
   };
 
   return (
-    <section id="compliance" className="relative py-24 border-t border-border">
+    <section id="compliance" className="relative py-24 border-t border-border" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-4">
         {/* Title */}
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="reveal mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
             AI Compliance Assistant
           </div>
@@ -67,17 +69,18 @@ export default function AIRecommendations() {
           <p className="mt-4 text-base text-ink-soft sm:text-lg">
             Select your business category to instantly see the primary licenses, permits, and tax registrations required by Indian law.
           </p>
+          <div className="section-line" aria-hidden="true" />
         </div>
 
         {/* Tab Controls */}
-        <div className="mt-12 flex flex-wrap justify-center gap-2">
+        <div className="reveal mt-12 flex flex-wrap justify-center gap-2">
           {categories.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-[var(--gradient-brand)]  shadow-glow'
+                  ? 'bg-[var(--gradient-brand)] text-white shadow-glow'
                   : 'border border-border bg-card text-ink-soft hover:bg-secondary hover:text-ink shadow-soft'
               }`}
             >
@@ -88,7 +91,7 @@ export default function AIRecommendations() {
         </div>
 
         {/* Recommendation Checklist Box */}
-        <div className="mx-auto mt-8 max-w-3xl rounded-3xl glass-dark p-4 shadow-card sm:p-6">
+        <div className="reveal mx-auto mt-8 max-w-3xl rounded-3xl glass-dark p-4 shadow-card sm:p-6">
           <div className="flex items-center justify-between border-b border-border pb-4 mb-4">
             <div>
               <span className="text-xs font-semibold text-brand uppercase tracking-wider">Required Licenses</span>
@@ -99,44 +102,39 @@ export default function AIRecommendations() {
             </div>
           </div>
 
-          <div className="grid gap-3">
+          <div className="reveal-stagger space-y-3">
             {recommendations[activeTab].map((rec) => {
-              const uniqueKey = `${activeTab}_${rec.id}`;
-              const isChecked = selectedLicenses[uniqueKey] || false;
-
+              const isSelected = selectedLicenses[rec.id];
               return (
                 <div
                   key={rec.id}
-                  onClick={() => toggleLicenseSelect(uniqueKey)}
-                  className={`flex items-start gap-3.5 rounded-2xl bg-card p-4 ring-1 shadow-soft transition-all duration-200 cursor-pointer ${
-                    isChecked
-                      ? 'ring-brand/50 border-brand bg-brand-soft/20 dark:bg-brand-soft/5'
-                      : 'ring-border hover:-translate-y-0.5 hover:shadow-card'
+                  onClick={() => toggleLicenseSelect(rec.id)}
+                  className={`group flex items-start gap-4 rounded-2xl p-4 transition cursor-pointer ${
+                    isSelected
+                      ? 'bg-brand/5 border border-brand/20 dark:bg-brand/10'
+                      : 'bg-card border border-border hover:border-brand/30 hover:shadow-card'
                   }`}
                 >
-                  <div className="mt-1 shrink-0 text-brand">
-                    {isChecked ? (
-                      <CheckSquare className="h-5 w-5 fill-brand/10" />
+                  <div className="mt-1 shrink-0">
+                    {isSelected ? (
+                      <CheckSquare className="h-5 w-5 text-brand" />
                     ) : (
-                      <Square className="h-5 w-5" />
+                      <Square className="h-5 w-5 text-ink-soft group-hover:text-brand transition-colors" />
                     )}
                   </div>
-
-                  <div className="grow min-w-0">
-                    <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
-                      <h4 className="font-display text-sm font-bold text-ink">{rec.name}</h4>
-                      <span
-                        className={`rounded-md px-2 py-0.5 text-[10px] font-bold ring-1 ${
-                          rec.crit === 'Mandatory'
-                            ? 'bg-rose-50 text-rose-700 ring-rose-200/60 dark:bg-rose-950/40 dark:text-rose-400 dark:ring-rose-800/40'
-                            : 'bg-amber-50 text-amber-700 ring-amber-200/60 dark:bg-amber-950/40 dark:text-amber-400 dark:ring-amber-800/40'
-                        }`}
-                      >
+                  <div>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                      <h4 className={`font-bold text-sm ${isSelected ? 'text-brand' : 'text-ink group-hover:text-brand'} transition-colors`}>{rec.name}</h4>
+                      <span className={`inline-block rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                        rec.crit === 'Mandatory' ? 'bg-rose-100 text-rose-700 dark:bg-rose-500/10 dark:text-rose-400' 
+                        : rec.crit === 'Required' ? 'bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400'
+                        : 'bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400'
+                      }`}>
                         {rec.crit}
                       </span>
                     </div>
-                    <div className="text-[11px] font-medium text-brand mt-0.5">{rec.auth}</div>
-                    <p className="mt-2 text-xs text-ink-soft leading-relaxed">{rec.desc}</p>
+                    <div className="mt-1 text-xs font-medium text-ink-soft opacity-80">{rec.auth}</div>
+                    <p className="mt-2 text-sm text-ink-soft leading-relaxed">{rec.desc}</p>
                   </div>
                 </div>
               );

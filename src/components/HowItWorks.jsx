@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { UserPlus, ListChecks, UploadCloud, Award, ShieldCheck, Clock, Bell, TrendingUp, ArrowRight } from 'lucide-react';
+import { useScrollRevealAll } from '../hooks/usePremium';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const GlowingVaultSvg = ({ className }) => (
   <svg viewBox="0 0 400 400" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,6 +87,33 @@ const AiChipIcon = ({ className }) => (
 );
 
 export default function HowItWorks() {
+  const sectionRef = useScrollRevealAll();
+  const orbitRef = useRef(null);
+
+  useEffect(() => {
+    // Desktop orbital nodes stagger animation
+    if (!orbitRef.current) return;
+    const nodes = orbitRef.current.querySelectorAll('.orbit-node');
+    
+    gsap.fromTo(nodes, 
+      { opacity: 0, scale: 0.5, y: 50 },
+      {
+        opacity: 1, scale: 1, y: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: "back.out(1.5)",
+        scrollTrigger: {
+          trigger: orbitRef.current,
+          start: "top 70%",
+          end: "bottom 30%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+  }, []);
+
   const steps = [
     {
       num: '01',
@@ -130,8 +162,8 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="relative py-24 bg-transparent overflow-hidden text-slate-800 dark:text-white font-sans border-t border-slate-200 dark:border-white/5">
-      
+    <section id="how" ref={sectionRef} className="relative py-24 bg-transparent overflow-hidden text-slate-800 dark:text-white font-sans border-t border-slate-200 dark:border-white/5" aria-labelledby="hiw-heading">
+
       {/* Styles for complex animations */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes dash-flow {
@@ -164,22 +196,39 @@ export default function HowItWorks() {
       `}} />
 
       {/* Background ambient lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(59,130,246,0.08),_transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,_rgba(0,100,255,0.15),_transparent_70%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(59,130,246,0.08),_transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,_rgba(0,100,255,0.15),_transparent_70%)] pointer-events-none" aria-hidden="true" />
 
       <div className="mx-auto max-w-7xl px-4 relative z-10">
-        
+
         {/* Header section */}
-        <div className="mx-auto max-w-2xl text-center relative z-20">
+        <div className="reveal mx-auto max-w-2xl text-center relative z-20">
           <div className="inline-flex items-center justify-center rounded-full border border-blue-500/30 bg-blue-50/50 dark:border-[#00d2ff]/40 dark:bg-[#00d2ff]/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-[#00d2ff] backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.1)] dark:shadow-[0_0_15px_rgba(0,210,255,0.2)]">
             Workflow
           </div>
-          <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl drop-shadow-[0_0_20px_rgba(255,255,255,0.1)] dark:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+          <h2 id="hiw-heading" className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
             Get Compliant in Minutes
           </h2>
           <p className="mt-5 text-base text-slate-600 dark:text-slate-400 sm:text-lg max-w-xl mx-auto font-medium">
             Stay on top of registrations, documents, and government requirements in 5 easy steps.
           </p>
+          <div className="section-line" aria-hidden="true" />
         </div>
+
+        {/* ── VIDEO PLACEHOLDER ──────────────────────────────────────────────────────
+             Drop /public/videos/how-it-works.mp4 + how-it-works.webm to activate.
+             Remove the comment wrapper below to enable the video section.
+        ─────────────────────────────────────────────────────────────────────────── */}
+        {/* <div className="reveal mt-12 mx-auto max-w-3xl">
+          <div className="video-container shadow-card ring-1 ring-border">
+            <img src="/videos/how-it-works-poster.jpg" alt="How DukaanLocker works" className="w-full h-full object-cover" />
+            <div className="video-play-overlay" role="button" tabIndex={0} aria-label="Play walkthrough video">
+              <div className="video-play-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-brand ml-1"><polygon points="5,3 19,12 5,21" /></svg>
+              </div>
+            </div>
+          </div>
+          <p className="mt-3 text-center text-xs text-ink-soft">2-minute product walkthrough</p>
+        </div> */}
 
         {/* 3D Showcase and Interactive Orbit Area */}
         <div className="relative mt-16 lg:mt-10 w-full max-w-5xl mx-auto h-[650px] lg:h-[700px]">
@@ -226,7 +275,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Desktop Orbital Arc & Interactive Nodes (Hidden on Mobile) */}
-          <div className="hidden lg:block absolute inset-0 z-20 pointer-events-none">
+          <div className="hidden lg:block absolute inset-0 z-20 pointer-events-none" ref={orbitRef}>
             
             {/* The SVG Orbit Path */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 700" preserveAspectRatio="none">
@@ -253,7 +302,7 @@ export default function HowItWorks() {
             {steps.map((step, idx) => (
               <div 
                 key={idx}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2 group pointer-events-auto cursor-pointer"
+                className="orbit-node absolute transform -translate-x-1/2 -translate-y-1/2 group pointer-events-auto cursor-pointer"
                 style={{ left: step.position.left, top: step.position.top }}
               >
                 {/* Sonar Ripple Effect (Activates on Hover) */}

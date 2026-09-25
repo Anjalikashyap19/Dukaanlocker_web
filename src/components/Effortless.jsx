@@ -1,45 +1,47 @@
 import React from 'react';
 import { Shield, AlarmClock, Zap, FileSpreadsheet, HardDrive, LineChart } from 'lucide-react';
+import { useScrollRevealAll } from '../hooks/usePremium';
 
 export default function Effortless() {
+  const sectionRef = useScrollRevealAll();
   const benefits = [
     {
-      icon: <Shield className="h-6 w-6 text-brand" />,
+      icon: <Shield className="h-6 w-6 text-brand transition-transform group-hover:scale-110 group-hover:text-white" />,
       title: 'Reduce Compliance Risk',
       desc: 'Avoid heavy government penalties, legal notices, and unexpected closure orders.',
     },
     {
-      icon: <AlarmClock className="h-6 w-6 text-brand" />,
+      icon: <AlarmClock className="h-6 w-6 text-brand transition-transform group-hover:scale-110 group-hover:text-white" />,
       title: 'Never Miss Renewals',
       desc: 'Multi-channel smart reminders notify you weeks in advance to update licenses.',
     },
     {
-      icon: <Zap className="h-6 w-6 text-brand" />,
+      icon: <Zap className="h-6 w-6 text-brand transition-transform group-hover:scale-110 group-hover:text-white" />,
       title: 'Save Countless Hours',
       desc: 'No more searching through file folders or visiting government offices in person.',
     },
     {
-      icon: <FileSpreadsheet className="h-6 w-6 text-brand" />,
+      icon: <FileSpreadsheet className="h-6 w-6 text-brand transition-transform group-hover:scale-110 group-hover:text-white" />,
       title: 'Stay Audit Ready',
       desc: 'Keep all registrations, tax receipts, and NOCs verified and organized for inspection.',
     },
     {
-      icon: <HardDrive className="h-6 w-6 text-brand" />,
+      icon: <HardDrive className="h-6 w-6 text-brand transition-transform group-hover:scale-110 group-hover:text-white" />,
       title: 'Single Source of Truth',
       desc: 'Securely access every document from desktop, mobile, or direct share links.',
     },
     {
-      icon: <LineChart className="h-6 w-6 text-brand" />,
+      icon: <LineChart className="h-6 w-6 text-brand transition-transform group-hover:scale-110 group-hover:text-white" />,
       title: 'Improve Operations',
       desc: 'Focus on scaling sales and managing your store instead of government paperwork.',
     },
   ];
 
   return (
-    <section id="about" className="relative py-24 border-t border-border">
+    <section id="about" className="relative py-24 border-t border-border" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-4">
         {/* Title */}
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="reveal mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
             Operational Benefits
           </div>
@@ -49,21 +51,22 @@ export default function Effortless() {
           <p className="mt-4 text-base text-ink-soft sm:text-lg">
             Say goodbye to complex legal jargon and government portal login codes. We handle the hard work.
           </p>
+          <div className="section-line" aria-hidden="true" />
         </div>
 
         {/* Benefits Grid */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="reveal-stagger mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="group relative rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border transition hover:shadow-card hover:-translate-y-0.5"
+              className="group relative rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover"
             >
               <div className="flex gap-4">
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft ring-1 ring-brand/10 dark:bg-brand-soft/10">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft ring-1 ring-brand/10 dark:bg-brand-soft/10 transition-colors group-hover:bg-brand group-hover:shadow-glow">
                   {benefit.icon}
                 </div>
                 <div>
-                  <h3 className="font-display text-base font-bold text-ink">{benefit.title}</h3>
+                  <h3 className="font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{benefit.title}</h3>
                   <p className="mt-2 text-sm text-ink-soft leading-relaxed">{benefit.desc}</p>
                 </div>
               </div>
