@@ -8,6 +8,13 @@ import Pricing from './pages/Pricing';
 import Careers from './pages/Careers';
 import Support from './pages/Support';
 
+import Contact from './pages/Contact';
+import Faqs from './pages/Faqs';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
+import Security from './pages/Security';
+import Documentation from './pages/Documentation';
+
 export default function App() {
   return (
     <Routes>
@@ -18,6 +25,14 @@ export default function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/faqs" element={<Faqs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
+        <Route path="/security" element={<Security />} />
+        <Route path="/information-security" element={<Security />} />
+        <Route path="/documentation" element={<Documentation />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

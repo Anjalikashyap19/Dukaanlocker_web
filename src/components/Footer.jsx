@@ -40,35 +40,27 @@ export default function Footer() {
 
   const columns = [
     {
-      heading: 'Product',
-      links: [
-        { label: 'Features', to: '/features' },
-        { label: 'Pricing', to: '/pricing' },
-        { label: 'Roadmap', onClick: soon('Roadmap') },
-      ],
-    },
-    {
       heading: 'Company',
       links: [
         { label: 'About Us', to: '/about' },
         { label: 'Careers', to: '/careers' },
-        { label: 'Contact', onClick: soon('Contact') },
+        { label: 'Contact', to: '/contact' },
       ],
     },
     {
       heading: 'Resources',
       links: [
         { label: 'Support Center', to: '/support' },
-        { label: 'Documentation', onClick: soon('Documentation') },
-        { label: 'FAQs', to: '/support' },
+        { label: 'Documentation', to: '/documentation' },
+        { label: 'FAQs', to: '/faqs' },
       ],
     },
     {
       heading: 'Legal',
       links: [
-        { label: 'Privacy Policy', onClick: soon('Privacy Policy') },
-        { label: 'Terms & Conditions', onClick: soon('Terms & Conditions') },
-        { label: 'Information Security', onClick: soon('Information Security') },
+        { label: 'Privacy Policy', to: '/privacy-policy' },
+        { label: 'Terms & Conditions', to: '/terms' },
+        { label: 'Information Security', to: '/security' },
       ],
     },
   ];
@@ -153,9 +145,9 @@ export default function Footer() {
         </div>
 
         {/* Multi-column grid */}
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-b border-border pb-16">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-border pb-16">
           {/* Brand col */}
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--gradient-brand)] shadow-glow" style={{ background: 'var(--gradient-brand)' }}>
                 <Lock className="h-4 w-4 text-white" />

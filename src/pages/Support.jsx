@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ChevronDown, Mail, LifeBuoy, MessageCircle, BookOpen,
   Video, Bot, Search, Sparkles, ArrowRight, HelpCircle,
@@ -18,13 +19,13 @@ const faqs = [
 ];
 
 const contact = [
-  { icon: <Mail className="h-6 w-6 text-white" />, title: 'Email Support', desc: 'Reach our team at support@indiaadvocacy.in for any questions or concerns.', action: 'Email Us', gradient: 'from-blue-500/20 to-blue-600/10' },
-  { icon: <LifeBuoy className="h-6 w-6 text-white" />, title: 'Help Center', desc: 'Browse comprehensive guides, tutorials and answers to common questions.', action: 'Browse Articles', gradient: 'from-emerald-500/20 to-emerald-600/10' },
-  { icon: <MessageCircle className="h-6 w-6 text-white" />, title: 'Live Chat', desc: 'Chat with a compliance specialist in real time during business hours.', action: 'Start Chat', gradient: 'from-purple-500/20 to-purple-600/10' },
+  { icon: <Mail className="h-6 w-6 text-white" />, title: 'Email Support', desc: 'Reach our team at support@indiaadvocacy.in for any questions or concerns.', action: 'Email Us', to: '/contact', gradient: 'from-blue-500/20 to-blue-600/10' },
+  { icon: <LifeBuoy className="h-6 w-6 text-white" />, title: 'Help & Documentation', desc: 'Browse comprehensive guides, tutorials and answers to common questions.', action: 'Browse Guides', to: '/documentation', gradient: 'from-emerald-500/20 to-emerald-600/10' },
+  { icon: <MessageCircle className="h-6 w-6 text-white" />, title: 'Compliance Consultation', desc: 'Speak with an India Advocacy compliance specialist regarding your shop licenses.', action: 'Contact Team', to: '/contact', gradient: 'from-purple-500/20 to-purple-600/10' },
 ];
 
 const upcoming = [
-  { icon: <BookOpen className="h-5 w-5" />, title: 'Knowledge Base', desc: 'A searchable library of compliance guides, how-tos, and best practices.' },
+  { icon: <BookOpen className="h-5 w-5" />, title: 'Platform Documentation', desc: 'A step-by-step library of compliance guides, how-tos, and best practices.', to: '/documentation' },
   { icon: <Video className="h-5 w-5" />, title: 'Video Tutorials', desc: 'Step-by-step walkthroughs for every feature and workflow in DukaanLocker.' },
   { icon: <Bot className="h-5 w-5" />, title: 'AI Support Assistant', desc: 'Instant answers to your compliance questions powered by our AI engine.' },
 ];
@@ -190,19 +191,30 @@ export default function Support() {
                   </div>
                   <h3 className="mt-5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{c.title}</h3>
                   <p className="mt-1.5 grow text-sm text-ink-soft leading-relaxed">{c.desc}</p>
-                  <button
-                    onClick={() =>
-                      openComingSoon({
-                        title: `${c.title} — Coming Soon`,
-                        description: 'We are actively building this support experience and it will be available in a future release.',
-                      })
-                    }
-                    className="mt-5 inline-flex w-fit items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer"
-                    style={{ background: 'var(--gradient-brand)' }}
-                  >
-                    {c.action}
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
+                  {c.to ? (
+                    <Link
+                      to={c.to}
+                      className="mt-5 inline-flex w-fit items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer"
+                      style={{ background: 'var(--gradient-brand)' }}
+                    >
+                      {c.action}
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        openComingSoon({
+                          title: `${c.title} — Coming Soon`,
+                          description: 'We are actively building this support experience and it will be available in a future release.',
+                        })
+                      }
+                      className="mt-5 inline-flex w-fit items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer"
+                      style={{ background: 'var(--gradient-brand)' }}
+                    >
+                      {c.action}
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -215,39 +227,58 @@ export default function Support() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="reveal mx-auto max-w-2xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand backdrop-blur dark:bg-brand-soft/10">
-              <Sparkles className="h-3 w-3" aria-hidden="true" /> Coming Soon
+              <Sparkles className="h-3 w-3" aria-hidden="true" /> Learning Resources
             </div>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               More ways to get help
             </h2>
             <p className="mt-4 text-base text-ink-soft sm:text-lg">
-              We're building richer self-serve support experiences — launching soon.
+              Explore our guides, video walk-throughs, and compliance tools.
             </p>
             <div className="section-line" aria-hidden="true" />
           </div>
           <div className="reveal-stagger mt-14 grid gap-5 sm:grid-cols-3">
             {upcoming.map((u) => (
-              <button
-                key={u.title}
-                onClick={() =>
-                  openComingSoon({
-                    title: `${u.title} — Coming Soon`,
-                    description: 'We are actively building this experience and it will be available in a future release.',
-                  })
-                }
-                className="group text-left rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover cursor-pointer"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white group-hover:shadow-glow">
-                    {u.icon}
+              u.to ? (
+                <Link
+                  key={u.title}
+                  to={u.to}
+                  className="group text-left rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover cursor-pointer block"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white group-hover:shadow-glow">
+                      {u.icon}
+                    </div>
+                    <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 ring-1 ring-emerald-200/60 dark:bg-emerald-950/40 dark:text-emerald-400">
+                      Explore
+                    </span>
                   </div>
-                  <span className="rounded-md bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-700 ring-1 ring-amber-200/60 dark:bg-amber-950/40 dark:text-amber-400 dark:ring-amber-800/40">
-                    Soon
-                  </span>
-                </div>
-                <h3 className="mt-5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{u.title}</h3>
-                <p className="mt-1.5 text-sm text-ink-soft leading-relaxed">{u.desc}</p>
-              </button>
+                  <h3 className="mt-5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{u.title}</h3>
+                  <p className="mt-1.5 text-sm text-ink-soft leading-relaxed">{u.desc}</p>
+                </Link>
+              ) : (
+                <button
+                  key={u.title}
+                  onClick={() =>
+                    openComingSoon({
+                      title: `${u.title} — Coming Soon`,
+                      description: 'We are actively building this experience and it will be available in a future release.',
+                    })
+                  }
+                  className="group text-left rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover cursor-pointer"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white group-hover:shadow-glow">
+                      {u.icon}
+                    </div>
+                    <span className="rounded-md bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-700 ring-1 ring-amber-200/60 dark:bg-amber-950/40 dark:text-amber-400 dark:ring-amber-800/40">
+                      Soon
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{u.title}</h3>
+                  <p className="mt-1.5 text-sm text-ink-soft leading-relaxed">{u.desc}</p>
+                </button>
+              )
             ))}
           </div>
         </div>

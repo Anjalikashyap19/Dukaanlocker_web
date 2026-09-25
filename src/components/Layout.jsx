@@ -47,13 +47,42 @@ export default function Layout() {
     };
   }, []);
 
-  // ── Scroll to top on route change ────────────────────────────────────
+  // ── Scroll to top on route change & initialize reveal animations ───
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo(0, 0);
     }
+
+    // Safeguard: Ensure all reveal elements become visible smoothly
+    const timer = setTimeout(() => {
+      const targets = document.querySelectorAll('.reveal:not(.is-visible), .reveal-stagger:not(.is-visible)');
+      if (!targets.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: '0px 0px 100px 0px' }
+      );
+
+      targets.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 200 && rect.bottom > -100) {
+          el.classList.add('is-visible');
+        } else {
+          observer.observe(el);
+        }
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   // ── Apply theme class ────────────────────────────────────────────────
