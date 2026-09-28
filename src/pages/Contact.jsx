@@ -31,7 +31,6 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useScrollRevealAll();
-  const officesRef = useScrollRevealAll();
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -50,40 +49,13 @@ export default function Contact() {
     }, 900);
   };
 
-  const offices = [
-    {
-      city: 'Chennai (Technology & Incubation HQ)',
-      institution: 'Sathyabama Institute of Science and Technology',
-      address: 'Sathyabama College Rd, Kamaraj Nagar, Semmencheri, Chennai, Tamil Nadu 600119',
-      role: 'Core Engineering & Technology Business Incubation',
-    },
-    {
-      city: 'Bhilai (Skills & Research Hub)',
-      institution: 'Rungta International Skills University',
-      address: 'G.E. Road, Kohka, Kurud, Bhilai, Chhattisgarh 490024',
-      role: 'Skill Development & Regulatory Research Partnership',
-    },
-    {
-      city: 'Patna (Regional Compliance Desk)',
-      institution: 'India Advocacy North Operations',
-      address: 'Bailey Road / Fraser Road Commercial Corridor, Patna, Bihar 800001',
-      role: 'MSME Field Legal Assistance & Regional Outreach',
-    },
-    {
-      city: 'Kolkata (Eastern India Hub)',
-      institution: 'India Advocacy East Desk',
-      address: 'Salt Lake Sector V, Bidhannagar, Kolkata, West Bengal 700091',
-      role: 'Trade Advisory & Corporate Liaison',
-    },
-  ];
-
   return (
     <>
       <PageHero
         badge="Contact DukaanLocker & India Advocacy"
         title="We're here to protect & support"
         highlight="your business"
-        subtitle="Speak with our legal-tech compliance specialists, get onboarding guidance, or visit our university incubation offices."
+        subtitle="Speak with our legal-tech compliance specialists, get onboarding guidance, or request specialized regulatory assistance."
       />
 
       <section className="relative -mt-6 pb-20" ref={formRef}>
@@ -137,7 +109,6 @@ export default function Contact() {
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-wider text-ink">Parent Organization</h4>
                       <p className="text-sm font-semibold text-ink">India Advocacy (Piquant Consultancy & Technology Services Pvt. Ltd.)</p>
-                      <p className="text-xs text-ink-soft mt-0.5">Incubated at Sathyabama Institute of Science and Technology</p>
                     </div>
                   </div>
                 </div>
@@ -334,44 +305,6 @@ export default function Contact() {
                 )}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Office Locations & Incubation Centers ── */}
-      <section className="relative py-20 border-t border-border bg-gradient-to-b from-transparent to-brand-soft/20 dark:to-brand-soft/5" ref={officesRef}>
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand dark:bg-brand-soft/10">
-              <MapPin className="h-3.5 w-3.5" /> Nationwide Presence
-            </div>
-            <h2 className="mt-4 font-display text-3xl font-extrabold text-ink">
-              Our Incubation Centers & Offices
-            </h2>
-            <p className="mt-3 text-sm text-ink-soft">
-              India Advocacy operates out of premier university technology incubators and regional centers.
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {offices.map((office) => (
-              <div
-                key={office.city}
-                className="rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-2 text-brand mb-3">
-                    <Building2 className="h-5 w-5" />
-                    <span className="text-xs font-bold uppercase tracking-wider">{office.city}</span>
-                  </div>
-                  <h3 className="font-display text-base font-bold text-ink">{office.institution}</h3>
-                  <p className="mt-2 text-xs text-ink-soft leading-relaxed">{office.address}</p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-border/60">
-                  <span className="text-[11px] font-medium text-brand">{office.role}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

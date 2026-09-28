@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
                 1. Introduction & Corporate Ownership
               </h3>
               <p className="text-sm text-ink-soft leading-relaxed">
-                This Privacy Policy governs the collection, storage, processing, and protection of data on <strong>DukaanLocker</strong> (the "Platform"), an enterprise SaaS product owned, engineered, and operated by <strong>India Advocacy</strong> (legal entity: <em>Piquant Consultancy & Technology Services Pvt. Ltd.</em>), incubated at Sathyabama Institute of Science and Technology, Chennai, Tamil Nadu.
+                This Privacy Policy governs the collection, storage, processing, and protection of data on <strong>DukaanLocker</strong> (the "Platform"), an enterprise SaaS product owned, engineered, and operated by <strong>India Advocacy</strong> (legal entity: <em>Piquant Consultancy & Technology Services Pvt. Ltd.</em>), based in Chennai, Tamil Nadu.
               </p>
               <p className="text-sm text-ink-soft leading-relaxed">
                 We respect the privacy of Indian shopkeepers, trade merchants, and MSME founders. When you store documents or manage compliance on DukaanLocker, your records are guarded under rigorous technical, organizational, and sovereign legal protocols.
@@ -158,7 +158,7 @@ export default function PrivacyPolicy() {
               <div className="rounded-2xl bg-card p-5 ring-1 ring-border text-xs text-ink-soft space-y-1.5">
                 <p><strong className="text-ink">Designation:</strong> Data Protection & Grievance Redressal Officer</p>
                 <p><strong className="text-ink">Organization:</strong> India Advocacy (Piquant Consultancy & Technology Services Pvt. Ltd.)</p>
-                <p><strong className="text-ink">Incubation Address:</strong> Sathyabama Institute of Science and Technology, Semmencheri, Chennai, Tamil Nadu 600119</p>
+                <p><strong className="text-ink">Office Address:</strong> Semmencheri, Chennai, Tamil Nadu 600119</p>
                 <p><strong className="text-ink">Official Email:</strong> <a href="mailto:support@indiaadvocacy.in" className="text-brand hover:underline font-semibold">support@indiaadvocacy.in</a></p>
               </div>
             </div>

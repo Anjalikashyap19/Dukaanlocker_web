@@ -6,7 +6,6 @@ import Features from '../components/Features';
 import HowItWorks from '../components/HowItWorks';
 import AIRecommendations from '../components/AIRecommendations';
 import Effortless from '../components/Effortless';
-import RevenueModel from '../components/RevenueModel';
 import { useComingSoon } from '../context/ComingSoonContext';
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
       <HowItWorks />
       <AIRecommendations />
       <Effortless />
-      <RevenueModel />
     </>
   );
 }

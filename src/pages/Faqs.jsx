@@ -79,7 +79,7 @@ const allFaqs = [
   {
     category: 'Legal Advisory',
     q: 'Who is behind DukaanLocker?',
-    a: 'DukaanLocker is engineered and operated by India Advocacy (Piquant Consultancy & Technology Services Pvt. Ltd.), an Indian legal-tech firm incubated at Sathyabama Institute of Science and Technology (Chennai) with academic skill partnerships at Rungta International Skills University (Bhilai).',
+    a: 'DukaanLocker is engineered and operated by India Advocacy (Piquant Consultancy & Technology Services Pvt. Ltd.), an Indian legal-tech firm committed to simplifying compliance for grassroots businesses.',
   },
   {
     category: 'Legal Advisory',
@@ -198,18 +198,13 @@ export default function Faqs() {
                       aria-expanded={isOpen}
                       className="flex w-full items-center justify-between gap-4 p-5 text-left cursor-pointer"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-                        <span className="w-fit rounded-md bg-brand-soft/60 px-2 py-0.5 text-[10px] font-bold text-brand dark:bg-brand-soft/20">
-                          {faq.category}
-                        </span>
-                        <span
-                          className={`font-display text-sm font-bold transition-colors ${
-                            isOpen ? 'text-brand' : 'text-ink'
-                          }`}
-                        >
-                          {faq.q}
-                        </span>
-                      </div>
+                      <span
+                        className={`font-display text-sm font-bold transition-colors ${
+                          isOpen ? 'text-brand' : 'text-ink'
+                        }`}
+                      >
+                        {faq.q}
+                      </span>
                       <ChevronDown
                         className={`h-4 w-4 shrink-0 text-brand transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''

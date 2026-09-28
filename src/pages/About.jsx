@@ -205,34 +205,6 @@ export default function About() {
                 <p className="mt-3 text-sm text-ink-soft leading-relaxed">
                   To eliminate the deep systemic friction faced by neighborhood merchants (dukandars), India Advocacy engineered <strong>DukaanLocker</strong> — synthesizing statutory legal intelligence with cloud-native security to deliver an accessible compliance operating system.
                 </p>
-
-                {/* Academic & Innovation Incubation Badges */}
-                <div className="mt-6 pt-6 border-t border-border/70 grid gap-4 sm:grid-cols-2">
-                  <div className="flex items-start gap-3 rounded-2xl bg-card/80 p-4 ring-1 ring-border">
-                    <Building2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Incubated At</h4>
-                      <p className="mt-0.5 text-xs text-ink-soft font-medium">Sathyabama Institute of Science and Technology, Chennai</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 rounded-2xl bg-card/80 p-4 ring-1 ring-border">
-                    <Award className="h-5 w-5 text-brand shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Skill Partner</h4>
-                      <p className="mt-0.5 text-xs text-ink-soft font-medium">Rungta International Skills University, Bhilai</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-ink-soft">
-                  <span className="flex items-center gap-1.5 font-medium text-ink">
-                    <MapPin className="h-4 w-4 text-brand" /> Pan-India Operations:
-                  </span>
-                  <span className="rounded-lg bg-card px-2.5 py-1 ring-1 ring-border">Chennai (HQ)</span>
-                  <span className="rounded-lg bg-card px-2.5 py-1 ring-1 ring-border">Patna</span>
-                  <span className="rounded-lg bg-card px-2.5 py-1 ring-1 ring-border">Bhilai</span>
-                  <span className="rounded-lg bg-card px-2.5 py-1 ring-1 ring-border">Kolkata</span>
-                </div>
               </div>
 
               {/* Legal Tech Capability Highlights */}
@@ -283,13 +255,13 @@ export default function About() {
               {
                 icon: <Users className="h-6 w-6" />,
                 title: 'Who We Are',
-                desc: 'A multidisciplinary collective of advocates, software engineers, and tax specialists incubated under leading academic ecosystems to solve real-world compliance headaches for shopkeepers.',
+                desc: 'A multidisciplinary collective of advocates, software engineers, and tax specialists working together to solve real-world compliance headaches for shopkeepers.',
                 gradient: 'from-blue-500/20 to-blue-600/10',
               },
               {
                 icon: <Target className="h-6 w-6" />,
                 title: 'Our Mission',
-                desc: 'To eradicate compliance-induced stress for every Indian business owner by delivering automated license tracking, bank-grade document safety, and timely regulatory advice.',
+                desc: 'To eradicate compliance-induced stress for every Indian business owner by delivering automated license tracking, secure document safety, and timely regulatory advice.',
                 gradient: 'from-brand/20 to-purple-600/10',
               },
               {

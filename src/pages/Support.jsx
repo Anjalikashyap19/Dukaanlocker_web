@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ChevronDown, Mail, LifeBuoy, MessageCircle, BookOpen,
-  Video, Bot, Search, Sparkles, ArrowRight, HelpCircle,
+  Video, Bot, Sparkles, ArrowRight, HelpCircle,
   ShieldCheck, FileText, Building2, Clock,
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
@@ -39,19 +39,10 @@ const quickLinks = [
 
 export default function Support() {
   const [openIndex, setOpenIndex] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const openComingSoon = useComingSoon();
   const faqRef      = useScrollRevealAll();
   const contactRef  = useScrollRevealAll();
   const resourceRef = useScrollRevealAll();
-
-  const filteredFaqs = searchQuery
-    ? faqs.filter(
-        (faq) =>
-          faq.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          faq.a.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : faqs;
 
   const toggleFaq = (idx) => setOpenIndex(openIndex === idx ? null : idx);
 
@@ -64,25 +55,8 @@ export default function Support() {
         subtitle="Find answers, get in touch, and explore everything you need to stay compliant with confidence."
       />
 
-      {/* Quick search */}
-      <section className="relative -mt-6 pb-8">
-        <div className="mx-auto max-w-2xl px-4">
-          <div className="reveal relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-ink-soft pointer-events-none" aria-hidden="true" />
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search for answers..."
-              aria-label="Search FAQ"
-              className="w-full rounded-2xl border border-border bg-card pl-12 pr-4 py-4 text-sm text-ink outline-none placeholder:text-ink-soft/50 focus:border-brand focus:ring-2 focus:ring-brand/20 shadow-soft transition-all duration-200"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Quick links */}
-      <section className="relative pb-8">
+      <section className="relative -mt-6 pb-8">
         <div className="mx-auto max-w-7xl px-4">
           <div className="reveal-stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {quickLinks.map((link) => (
@@ -120,13 +94,7 @@ export default function Support() {
           </div>
 
           <div className="mt-10 space-y-3">
-            {filteredFaqs.length === 0 ? (
-              <div className="text-center py-12 rounded-2xl bg-card shadow-soft ring-1 ring-border">
-                <Search className="mx-auto h-8 w-8 text-ink-soft" aria-hidden="true" />
-                <p className="mt-3 text-sm text-ink-soft">No results found for "{searchQuery}"</p>
-              </div>
-            ) : (
-              filteredFaqs.map((faq, idx) => {
+            {faqs.map((faq, idx) => {
                 const isOpen = openIndex === idx;
                 return (
                   <div
@@ -156,8 +124,7 @@ export default function Support() {
                     </div>
                   </div>
                 );
-              })
-            )}
+              })}
           </div>
         </div>
       </section>

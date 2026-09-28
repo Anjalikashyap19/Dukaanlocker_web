@@ -43,7 +43,7 @@ export default function TermsConditions() {
                 1. Acceptance of Terms & Corporate Identity
               </h3>
               <p className="text-sm text-ink-soft leading-relaxed">
-                By accessing, browsing, creating an account, or uploading documents to <strong>DukaanLocker</strong> ("Service"), you signify your irrevocable acceptance of these Terms and Conditions ("Terms"). The Service is operated by <strong>India Advocacy</strong>, a brand of <strong>Piquant Consultancy & Technology Services Pvt. Ltd.</strong>, having its technology business incubation seat at Sathyabama Institute of Science and Technology, Chennai, Tamil Nadu 600119.
+                By accessing, browsing, creating an account, or uploading documents to <strong>DukaanLocker</strong> ("Service"), you signify your irrevocable acceptance of these Terms and Conditions ("Terms"). The Service is operated by <strong>India Advocacy</strong>, a brand of <strong>Piquant Consultancy & Technology Services Pvt. Ltd.</strong>, having its registered operations in Chennai, Tamil Nadu 600119.
               </p>
               <p className="text-sm text-ink-soft leading-relaxed">
                 If you are entering into this agreement on behalf of a partnership firm, proprietorship, LLP, or private company, you warrant that you possess statutory authority to bind that entity.

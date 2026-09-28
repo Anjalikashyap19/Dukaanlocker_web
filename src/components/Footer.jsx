@@ -162,7 +162,7 @@ export default function Footer() {
             <div className="mt-4 space-y-2">
               <div className="flex items-start gap-2 text-xs text-ink-soft">
                 <MapPin className="h-3.5 w-3.5 text-brand shrink-0 mt-0.5" />
-                <span>Sathyabama collage Rd, Kamaraj Nagar, Semmencheri, Chennai, Tamil Nadu 600119</span>
+                <span>Kamaraj Nagar, Semmencheri, Chennai, Tamil Nadu 600119</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-ink-soft">
                 <Mail className="h-3.5 w-3.5 text-brand shrink-0" />
