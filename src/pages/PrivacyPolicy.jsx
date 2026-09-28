@@ -79,16 +79,16 @@ export default function PrivacyPolicy() {
               </div>
             </div>
 
-            {/* 3. Bank-Grade Security & Sovereign Hosting */}
+            {/* 3. Secure Storage & Data Protection */}
             <div className="space-y-3">
               <h3 className="font-display text-lg font-bold text-ink flex items-center gap-2">
-                3. Encryption & Sovereign Data Storage
+                3. Secure Storage & Data Protection
               </h3>
               <p className="text-sm text-ink-soft leading-relaxed">
-                All vault documents uploaded to DukaanLocker are encrypted using <strong>AES-256 (Advanced Encryption Standard)</strong> at rest and transmitted using <strong>TLS 1.3</strong> protocol. Storage clusters are strictly hosted in Tier-4 Indian sovereign cloud facilities in adherence to Reserve Bank of India (RBI) and Ministry of Electronics & IT (MeitY) data localization norms.
+                All vault documents uploaded to DukaanLocker are stored in secure cloud infrastructure and transmitted using standard encrypted <strong>HTTPS / TLS</strong> protocols. We implement authentication and access controls to safeguard your data against unauthorized access.
               </p>
               <p className="text-sm text-ink-soft leading-relaxed">
-                DukaanLocker employs a zero-knowledge architectural framework: our database administrators and staff have zero access to the decrypted contents of your confidential tax and corporate files.
+                DukaanLocker ensures your uploaded business documents remain confidential and are accessible only by you and the authorized recipients you designate.
               </p>
             </div>
 

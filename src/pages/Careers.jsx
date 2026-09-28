@@ -4,7 +4,6 @@ import {
   Users, Briefcase, BellRing, Target, Zap, Coffee,
   Globe, Sparkles, ArrowRight, Check,
 } from 'lucide-react';
-import PageHero from '../components/PageHero';
 import { useComingSoon } from '../context/ComingSoonContext';
 import { useScrollRevealAll } from '../hooks/usePremium';
 
@@ -12,7 +11,7 @@ const whyWork = [
   {
     icon: <Rocket className="h-6 w-6" />,
     title: 'Innovation-Driven',
-    desc: 'Work on AI, automation and govtech that has never existed in India before — at the intersection of technology and public impact.',
+    desc: 'Work on AI, automation and compliance technology that has never existed in India before — at the intersection of technology and public impact.',
     gradient: 'from-blue-500/20 to-blue-600/10',
   },
   {
@@ -86,42 +85,8 @@ export default function Careers() {
 
   return (
     <>
-      <PageHero
-        badge="Careers"
-        title="Join our"
-        highlight="mission"
-        subtitle="Help us simplify compliance for millions of small businesses across India — and build something that truly matters."
-      >
-        <button
-          onClick={notifyMe}
-          className="group inline-flex items-center gap-2 rounded-xl bg-[var(--gradient-brand)] px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:opacity-95 cursor-pointer"
-          style={{ background: 'var(--gradient-brand)' }}
-        >
-          <BellRing className="h-4 w-4" />
-          Notify Me About Roles
-        </button>
-      </PageHero>
-
-      {/* Stats bar */}
-      <section className="relative -mt-8 pb-8">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="reveal-stagger grid grid-cols-3 gap-4">
-            {[
-              { value: '6.4 Cr+', label: 'Users We Serve' },
-              { value: 'Remote', label: 'Work Mode' },
-              { value: 'Fast', label: 'Growth Stage' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center p-4 rounded-2xl bg-card shadow-soft ring-1 ring-border card-hover">
-                <div className="font-display text-2xl font-extrabold gradient-text">{stat.value}</div>
-                <div className="mt-0.5 text-xs text-ink-soft">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why work with us */}
-      <section className="relative py-20 border-t border-border overflow-hidden" ref={whyRef}>
+      <section className="relative pt-36 pb-20 overflow-hidden" ref={whyRef}>
         {/* Animated mesh background */}
         <div
           className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-60 mesh-animated"

@@ -60,8 +60,8 @@ export default function TermsConditions() {
               </p>
               <div className="grid gap-3 sm:grid-cols-2 pt-2">
                 <div className="rounded-xl bg-card p-4 ring-1 ring-border text-xs text-ink-soft">
-                  <strong className="block text-ink font-semibold mb-1">Encrypted Vault Storage</strong>
-                  Upload, classify, and securely store shop registrations, licenses, and tax documents under AES-256 encryption.
+                  <strong className="block text-ink font-semibold mb-1">Secure Vault Storage</strong>
+                  Upload, classify, and securely store shop registrations, licenses, and tax documents in secure cloud storage.
                 </div>
                 <div className="rounded-xl bg-card p-4 ring-1 ring-border text-xs text-ink-soft">
                   <strong className="block text-ink font-semibold mb-1">Proactive Renewal Engine</strong>

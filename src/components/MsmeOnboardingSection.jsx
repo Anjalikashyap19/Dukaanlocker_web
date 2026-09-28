@@ -412,7 +412,7 @@ export default function MsmeOnboardingSection() {
 
                         <div className="msme-slide3-footer mt-auto">
                           <span className="flex items-center gap-1.5">
-                            <ShieldCheck className="h-3.5 w-3.5" /> Bank-grade encrypted
+                            <ShieldCheck className="h-3.5 w-3.5" /> Securely protected
                           </span>
                           <span className="text-green-400 font-mono font-bold">100% READY</span>
                         </div>

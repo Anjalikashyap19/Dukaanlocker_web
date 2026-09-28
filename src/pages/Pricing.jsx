@@ -56,7 +56,7 @@ const features = [
   {
     icon: <Zap className="h-5 w-5" />,
     title: 'All plans include',
-    items: ['Bank-grade AES-256 encryption', 'Cloud backup & sync', 'Real-time compliance score', 'Secure document sharing'],
+    items: ['Secure cloud storage', 'Cloud backup & sync', 'Real-time compliance score', 'Secure document sharing'],
   },
   {
     icon: <Clock className="h-5 w-5" />,

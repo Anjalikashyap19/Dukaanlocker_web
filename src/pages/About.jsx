@@ -95,8 +95,8 @@ export default function About() {
   const pillarCards = [
     {
       icon: <FolderLock className="h-6 w-6 text-brand" />,
-      title: 'Encrypted Digital Vault',
-      desc: 'AES-256 military-grade encrypted storage specifically designed for business certificates, deeds, tax records, and licenses with zero-knowledge access architecture.',
+      title: 'Protected Digital Vault',
+      desc: 'Secure cloud storage specifically designed for business certificates, deeds, tax records, and licenses with protected access controls.',
     },
     {
       icon: <Brain className="h-6 w-6 text-brand" />,
@@ -141,8 +141,8 @@ export default function About() {
   const roadmapItems = [
     {
       icon: <Landmark className="h-5 w-5" />,
-      title: 'Government Portal Auto-Fetch',
-      desc: 'Direct API integrations to securely import GSTIN, Udyam, and FSSAI credentials with authenticated single-tap verification.',
+      title: 'Smart Document Assistant',
+      desc: 'Assisted import and verification of shop registrations, GSTIN, and food licenses for quick onboarding.',
       status: 'In Development',
     },
     {
@@ -257,10 +257,10 @@ export default function About() {
 
                 <div className="rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border">
                   <h3 className="text-sm font-bold text-ink flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600" /> ISO & Encrypted Architecture
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600" /> Secure Cloud Architecture
                   </h3>
                   <p className="mt-2 text-xs text-ink-soft leading-relaxed">
-                    Strict adherence to ISO 27001 data governance protocols and Digital Personal Data Protection (DPDP) Act standards.
+                    Commitment to responsible data security practices, access protection, and privacy standards.
                   </p>
                 </div>
               </div>
@@ -410,7 +410,7 @@ export default function About() {
           <SectionHeader
             badge="Product Vision"
             title="Strategic engineering roadmap"
-            subtitle="Continuous platform improvements to stay aligned with evolving Indian GovTech frameworks."
+            subtitle="Continuous platform improvements to stay aligned with evolving business compliance needs."
           />
 
           <div className="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

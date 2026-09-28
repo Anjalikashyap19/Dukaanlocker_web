@@ -10,10 +10,10 @@ import { useComingSoon } from '../context/ComingSoonContext';
 import { useScrollRevealAll } from '../hooks/usePremium';
 
 const faqs = [
-  { q: 'How do I upload documents?', a: 'Once your account is active, you can upload documents directly from your dashboard — drag and drop files, scan with your phone, or fetch them automatically from government portals.', category: 'Getting Started' },
+  { q: 'How do I upload documents?', a: 'Once your account is active, you can upload documents directly from your dashboard — drag and drop files, or scan and upload them directly with your phone.', category: 'Getting Started' },
   { q: 'How do compliance reminders work?', a: 'DukaanLocker automatically tracks the expiry date of every license and registration, then sends you smart reminders via SMS, WhatsApp and email — weeks before anything is due.', category: 'Compliance' },
   { q: 'Can I manage multiple businesses?', a: 'Yes. Our multi-business management lets you run multiple shops, branches and entities from a single centralized dashboard with a unified compliance view.', category: 'Account' },
-  { q: 'Is my data secure?', a: 'Absolutely. All documents are stored in a bank-grade AES-256 encrypted vault, backed up to the cloud, and protected under ISO 27001 certified data practices.', category: 'Security' },
+  { q: 'Is my data secure?', a: 'Absolutely. All documents are safely stored in secure cloud storage, transmitted over encrypted HTTPS/TLS connections, and protected with authenticated account access.', category: 'Security' },
   { q: 'What document types are supported?', a: 'We support all major document types including PDFs, images (JPEG, PNG), and digital certificates. You can store GST registrations, FSSAI licenses, Udyam certificates, trade licenses, and more.', category: 'Getting Started' },
   { q: 'How do I share documents with my CA?', a: 'You can generate a secure share link for any document in your vault with a single tap. The recipient gets time-limited access and can view or download based on your permissions.', category: 'Account' },
 ];

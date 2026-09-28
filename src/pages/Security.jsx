@@ -2,16 +2,13 @@ import React from 'react';
 import {
   ShieldCheck,
   Lock,
-  Server,
   KeyRound,
   FileCheck,
   EyeOff,
-  AlertTriangle,
-  Building2,
-  CheckCircle2,
   HardDrive,
-  RefreshCw,
+  CheckCircle2,
   PhoneCall,
+  Mail,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
@@ -23,43 +20,43 @@ export default function Security() {
   const securityPillars = [
     {
       icon: <Lock className="h-6 w-6 text-brand" />,
-      title: 'AES-256 Encryption at Rest',
-      desc: 'All documents deposited into your DukaanLocker vault are encrypted using Advanced Encryption Standard (AES) with 256-bit cryptographic keys before being written to persistent storage.',
+      title: 'Secure Cloud Storage',
+      desc: 'All documents deposited into your DukaanLocker vault are stored securely in protected cloud infrastructure, shielding your critical business certificates from physical loss, theft, or damage.',
     },
     {
       icon: <KeyRound className="h-6 w-6 text-brand" />,
-      title: 'TLS 1.3 Secure Transmission',
-      desc: 'Data exchanged between your mobile device, browser, and our cloud cluster is strictly transmitted over Transport Layer Security (TLS 1.3) with Perfect Forward Secrecy.',
+      title: 'Encrypted Data in Transit',
+      desc: 'All data exchanged between your browser, mobile device, and DukaanLocker is encrypted using standard HTTPS and TLS protocols, keeping communications safe from interception.',
     },
     {
-      icon: <EyeOff className="h-6 w-6 text-brand" />,
-      title: 'Zero-Knowledge Privacy Design',
-      desc: 'Documents are partitioned with isolated tenant access keys. Platform operators and database engineers cannot read, preview, or index your private store documents.',
-    },
-    {
-      icon: <Server className="h-6 w-6 text-brand" />,
-      title: 'Sovereign Indian Data Centers',
-      desc: 'Our infrastructure is housed exclusively within Tier-4 data centers physically located in India, adhering strictly to MeitY data localization mandates and the DPDP Act 2023.',
-    },
-    {
-      icon: <HardDrive className="h-6 w-6 text-brand" />,
-      title: 'Redundant Multi-Zone Backups',
-      desc: 'Uploaded files are automatically replicated across geographically distinct data centers with automated point-in-time recovery, ensuring 99.999% durability against physical failure.',
+      icon: <ShieldCheck className="h-6 w-6 text-brand" />,
+      title: 'Authenticated Access Control',
+      desc: 'Your store vault is protected by secure user authentication. Only verified account holders have permission to view, manage, and download their business records.',
     },
     {
       icon: <FileCheck className="h-6 w-6 text-brand" />,
-      title: 'Time-Restricted CA Sharing',
-      desc: 'When sharing documents with your chartered accountant or tax consultant, you can enforce password requirements, restrict download rights, and set automated link expirations.',
+      title: 'Controlled Document Sharing',
+      desc: 'When sharing certificates with your Chartered Accountant (CA) or tax consultant, you can generate secure, permission-controlled links to ensure safe document distribution.',
+    },
+    {
+      icon: <EyeOff className="h-6 w-6 text-brand" />,
+      title: 'Strict User Privacy',
+      desc: 'Your uploaded documents and commercial records belong strictly to you. We respect user privacy and do not sell, rent, or share your proprietary business data with third parties.',
+    },
+    {
+      icon: <HardDrive className="h-6 w-6 text-brand" />,
+      title: 'Reliable Backups & Expiry Tracking',
+      desc: 'Digital document archives are safely backed up with automated expiry tracking, ensuring you always have access to current licenses and never miss statutory renewals.',
     },
   ];
 
   return (
     <>
       <PageHero
-        badge="Enterprise Security Framework"
-        title="Military-Grade Security for"
-        highlight="Your Commercial Vault"
-        subtitle="DukaanLocker by India Advocacy protects your trade licenses, financial certificates, and identity documents with institutional-grade encryption and zero-knowledge data isolation."
+        badge="Information Security"
+        title="Security & Privacy for"
+        highlight="Your Business Documents"
+        subtitle="DukaanLocker by India Advocacy protects your trade licenses, tax certificates, and commercial records with secure cloud storage, encrypted web transmission, and protected user access."
       />
 
       <section className="relative -mt-6 pb-24" ref={containerRef}>
@@ -67,33 +64,33 @@ export default function Security() {
           {/* Trust badges bar */}
           <div className="reveal flex flex-wrap items-center justify-center gap-6 rounded-2xl glass p-6 shadow-soft ring-1 ring-border mb-16">
             <div className="flex items-center gap-2 text-xs font-semibold text-ink">
-              <ShieldCheck className="h-5 w-5 text-emerald-600" />
-              <span>AES-256 Vault Encryption</span>
+              <Lock className="h-4 w-4 text-emerald-600" />
+              <span>Secure Cloud Storage</span>
             </div>
             <div className="h-4 w-px bg-border hidden sm:block" />
             <div className="flex items-center gap-2 text-xs font-semibold text-ink">
-              <ShieldCheck className="h-5 w-5 text-emerald-600" />
-              <span>ISO 27001 Data Practices</span>
+              <KeyRound className="h-4 w-4 text-emerald-600" />
+              <span>Encrypted Data Transmission</span>
             </div>
             <div className="h-4 w-px bg-border hidden sm:block" />
             <div className="flex items-center gap-2 text-xs font-semibold text-ink">
-              <ShieldCheck className="h-5 w-5 text-emerald-600" />
-              <span>Indian DPDP Act 2023 Aligned</span>
+              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <span>Authenticated Access</span>
             </div>
             <div className="h-4 w-px bg-border hidden sm:block" />
             <div className="flex items-center gap-2 text-xs font-semibold text-ink">
-              <ShieldCheck className="h-5 w-5 text-emerald-600" />
-              <span>Sovereign Cloud Hosting</span>
+              <FileCheck className="h-4 w-4 text-emerald-600" />
+              <span>Controlled Sharing</span>
             </div>
           </div>
 
           {/* Pillars grid */}
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-display text-3xl font-extrabold text-ink">
-              Six Layers of Document Protection
+              How We Protect Your Documents
             </h2>
             <p className="mt-3 text-sm text-ink-soft">
-              Every certificate in your vault is protected from unauthorized access, accidental deletion, and data leakage.
+              Reliable, transparent security measures implemented across our platform to keep your store certificates and business data safe.
             </p>
           </div>
 
@@ -111,17 +108,17 @@ export default function Security() {
                   <p className="mt-2.5 text-xs text-ink-soft leading-relaxed">{pillar.desc}</p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-border/50 flex items-center gap-1.5 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> Active Protocol
+                  <CheckCircle2 className="h-3.5 w-3.5" /> Active Protection
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Security Incident Reporting */}
+          {/* Security Support / Questions */}
           <div className="mt-16 rounded-3xl glass p-8 sm:p-10 shadow-card ring-1 ring-border text-center max-w-4xl mx-auto">
-            <h3 className="font-display text-xl font-bold text-ink">Have a security question or audit request?</h3>
+            <h3 className="font-display text-xl font-bold text-ink">Have questions about document security?</h3>
             <p className="mt-2 text-xs text-ink-soft max-w-lg mx-auto leading-relaxed">
-              Our information security and compliance operations team at India Advocacy can provide detailed architecture whitepapers or answer technical inquiries.
+              Our team at India Advocacy is here to help clarify how your business documents and records are stored and protected.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
@@ -130,12 +127,13 @@ export default function Security() {
                 style={{ background: 'var(--gradient-brand)' }}
               >
                 <PhoneCall className="h-3.5 w-3.5" />
-                Contact Security Officer
+                Contact Support
               </Link>
               <a
                 href="mailto:support@indiaadvocacy.in"
                 className="inline-flex items-center gap-2 rounded-xl bg-card border border-border px-5 py-2.5 text-xs font-semibold text-ink shadow-soft hover:border-brand/40"
               >
+                <Mail className="h-3.5 w-3.5" />
                 support@indiaadvocacy.in
               </a>
             </div>

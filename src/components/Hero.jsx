@@ -128,11 +128,11 @@ export default function Hero({ documents, score, renewDocument, onComingSoon }) 
           <div className="reveal mt-10 flex flex-wrap items-center gap-6 text-xs text-ink-soft" style={{ '--reveal-delay': '0.2s' }}>
             <div className="flex items-center gap-2 transition hover:text-ink">
               <ShieldCheck className="h-4 w-4 text-brand" />
-              ISO 27001 grade security
+              Protected cloud storage
             </div>
             <div className="flex items-center gap-2 transition hover:text-ink">
               <Lock className="h-4 w-4 text-brand" />
-              Bank-level encryption
+              Encrypted transmission
             </div>
             <div className="flex items-center gap-2 transition hover:text-ink">
               <Globe className="h-4 w-4 text-brand" />

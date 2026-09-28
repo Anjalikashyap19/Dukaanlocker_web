@@ -55,7 +55,7 @@ const allFaqs = [
   {
     category: 'Security & Privacy',
     q: 'How secure is my business data on DukaanLocker?',
-    a: 'All files are encrypted using bank-grade AES-256 encryption at rest and TLS 1.3 in transit. We maintain a zero-knowledge architecture where only you control document access. We strictly follow ISO 27001 standards and the Indian Digital Personal Data Protection (DPDP) Act, 2023.',
+    a: 'All files are transmitted securely using HTTPS/TLS encryption and stored in protected cloud storage. Only you and authorized users you specify can access your vault, keeping your documents confidential and private.',
   },
   {
     category: 'Security & Privacy',
@@ -122,7 +122,7 @@ export default function Faqs() {
         badge="Help Center & Knowledge Base"
         title="Frequently Asked"
         highlight="Questions"
-        subtitle="Clear, verified answers regarding statutory compliance, bank-grade vault encryption, automated expiry alerts, and India Advocacy advisory."
+        subtitle="Clear, verified answers regarding statutory compliance, secure cloud storage, automated expiry alerts, and India Advocacy advisory."
       />
 
       <section className="relative -mt-6 pb-20" ref={containerRef}>

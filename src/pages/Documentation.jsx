@@ -34,8 +34,8 @@ const docTopics = [
         detail: 'Specify your state and municipality to load local Trade License and Shop & Establishment Act bylaws.',
       },
       {
-        title: 'Activate Vault Encryption',
-        detail: 'Your dedicated AES-256 encrypted partition is initialized on sovereign Indian cloud storage.',
+        title: 'Activate Secure Vault',
+        detail: 'Your dedicated secure storage vault is initialized in the cloud.',
       },
     ],
   },

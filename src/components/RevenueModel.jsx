@@ -10,7 +10,7 @@ export default function RevenueModel() {
     },
     {
       title: 'Auto-Renewal Processing Fee',
-      desc: 'A convenience fee of ₹49–₹99 per renewal handled directly through government portals via our automated API integrations.',
+      desc: 'A convenience fee of ₹49–₹99 per renewal assisted through our guided renewal workflow.',
     },
     {
       title: 'Premium Advisory Services',

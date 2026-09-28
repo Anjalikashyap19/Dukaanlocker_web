@@ -30,10 +30,10 @@ import './Features.css';
 const categories = [
   {
     badge: 'Document Management', title: 'Your entire business, securely stored', shortTitle: 'Business vault',
-    description: 'A bank-grade vault for every license, registration, and certificate your business needs — accessible anywhere, anytime.',
+    description: 'A secure cloud vault for every license, registration, and certificate your business needs — accessible anywhere, anytime.',
     accent: '#22c55e', accentRgb: '34, 197, 94',
     features: [
-      { icon: <FolderLock className="h-5 w-5" />, title: 'Secure Document Storage', desc: 'Bank-grade AES-256 encrypted vault for every license, registration and certificate.', tag: 'Available' },
+      { icon: <FolderLock className="h-5 w-5" />, title: 'Secure Document Storage', desc: 'Protected cloud storage vault for every license, registration, and certificate.', tag: 'Available' },
       { icon: <Cloud className="h-5 w-5" />, title: 'Cloud Backup', desc: 'Access your documents anywhere, anytime, on any device — always backed up securely.', tag: 'Available' },
       { icon: <Files className="h-5 w-5" />, title: 'Multi-Document Support', desc: 'Store PDFs, images and scans of every document type in one organized, searchable place.', tag: 'Available' },
     ],
@@ -208,10 +208,10 @@ function PhoneScene({ activeIndex }) {
                         </span>
                       </div>
                       <div className="text-[11px] text-green-400 font-bold tracking-wider uppercase mb-0.5">
-                        Vault Encrypted
+                        Vault Protected
                       </div>
                       <div className="text-[8px] text-green-400/70 font-mono">
-                        AES-256 BANK-GRADE STORAGE
+                        SECURE CLOUD STORAGE
                       </div>
                       <div className="mt-2.5 w-full bg-black/40 rounded-lg p-2 border border-green-500/20 text-[9px] flex items-center justify-between">
                         <span className="text-white/80">GSTIN • FSSAI • MSME</span>

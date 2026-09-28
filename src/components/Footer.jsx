@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 import {
   Lock,
   Mail,
-  ShieldCheck,
   Send,
   Check,
   AtSign,
   Globe,
   Camera,
   Code2,
-  Heart,
   MapPin,
   ArrowUpRight,
 } from 'lucide-react';
@@ -202,32 +200,15 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom Bar: Trust Certifications */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-6 md:flex-row text-xs text-ink-soft">
-          <div className="flex flex-wrap items-center gap-6">
-            <div className="flex items-center gap-1.5 rounded-lg bg-secondary/50 dark:bg-secondary/10 px-2.5 py-1 ring-1 ring-border">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
-              AES-256 Vault Encrypted
-            </div>
-            <div className="flex items-center gap-1.5 rounded-lg bg-secondary/50 dark:bg-secondary/10 px-2.5 py-1 ring-1 ring-border">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
-              ISO 27001 Certified Data
-            </div>
-            <div className="flex items-center gap-1.5 rounded-lg bg-secondary/50 dark:bg-secondary/10 px-2.5 py-1 ring-1 ring-border">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
-              Govt-Tech API Sync
-            </div>
+        {/* Bottom Bar */}
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 md:flex-row text-xs text-ink-soft">
+          <div>
+            &copy; {new Date().getFullYear()} DukaanLocker. All rights reserved.
           </div>
 
-          <div className="flex flex-col items-center md:items-end gap-1">
-            <div className="flex items-center gap-1">
-              <Heart className="h-3 w-3 text-rose-500" />
-              &copy; {new Date().getFullYear()} DukaanLocker. All rights reserved.
-            </div>
-            <div className="flex items-center gap-1.5 text-[11px]">
-              <span>A product by</span>
-              <span className="font-semibold text-ink">India Advocacy</span>
-            </div>
+          <div className="flex items-center gap-1.5 text-[11px]">
+            <span>A product by</span>
+            <span className="font-semibold text-ink">India Advocacy</span>
           </div>
         </div>
       </div>
