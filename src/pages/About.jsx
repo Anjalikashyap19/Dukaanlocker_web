@@ -94,22 +94,22 @@ export default function About() {
 
   const pillarCards = [
     {
-      icon: <FolderLock className="h-6 w-6 text-brand" />,
+      icon: <FolderLock className="h-6 w-6" />,
       title: 'Protected Digital Vault',
       desc: 'Secure cloud storage specifically designed for business certificates, deeds, tax records, and licenses with protected access controls.',
     },
     {
-      icon: <Brain className="h-6 w-6 text-brand" />,
+      icon: <Brain className="h-6 w-6" />,
       title: 'AI Regulatory Intelligence',
       desc: 'Instant, location-specific compliance guidance tailored to your trade sector (grocery, pharmacy, restaurant, manufacturing, apparel, or electronics).',
     },
     {
-      icon: <BellRing className="h-6 w-6 text-brand" />,
+      icon: <BellRing className="h-6 w-6" />,
       title: 'Proactive Renewal Engine',
       desc: 'Intelligent multi-channel alerts delivered via WhatsApp, SMS, and email 60, 30, and 7 days prior to expiry, eliminating costly late fees.',
     },
     {
-      icon: <FileCheck className="h-6 w-6 text-brand" />,
+      icon: <FileCheck className="h-6 w-6" />,
       title: '1-Click CA & Audit Bridge',
       desc: 'Generate time-restricted, password-protected sharing links for chartered accountants, tax advocates, and government inspectors without file risk.',
     },
@@ -117,22 +117,22 @@ export default function About() {
 
   const coreValues = [
     {
-      icon: <Scale className="h-5 w-5 text-brand" />,
+      icon: <Scale className="h-5 w-5" />,
       title: 'Legal Rigor & Integrity',
       desc: 'Rooted in professional legal expertise from India Advocacy, ensuring all compliance advisory aligns with active statutory enactments.',
     },
     {
-      icon: <Users className="h-5 w-5 text-brand" />,
+      icon: <Users className="h-5 w-5" />,
       title: 'Dukandar-First Simplicity',
       desc: 'Engineered for simplicity so that any shopkeeper, regardless of technical background or language preference, can achieve complete compliance in minutes.',
     },
     {
-      icon: <Lock className="h-5 w-5 text-brand" />,
+      icon: <Lock className="h-5 w-5" />,
       title: 'Zero-Compromise Security',
       desc: 'We treat business documents with sovereign confidentiality. Your data is never sold, shared, or indexed for unauthorized commercial purposes.',
     },
     {
-      icon: <Award className="h-5 w-5 text-brand" />,
+      icon: <Award className="h-5 w-5" />,
       title: 'MSME Economic Empowerment',
       desc: 'Our fundamental mission is shielding Indian grassroots entrepreneurs from operational harassment and administrative gridlock.',
     },
@@ -308,14 +308,14 @@ export default function About() {
                 className="group relative overflow-hidden rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover"
               >
                 <div className="relative flex gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand/20 to-brand/5 text-brand ring-1 ring-brand/10 dark:from-brand/10 transition group-hover:scale-110 group-hover:shadow-glow">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow group-hover:bg-brand group-hover:text-white">
                     {item.icon}
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-brand uppercase tracking-wider">
                       Critical Friction 0{idx + 1}
                     </span>
-                    <h3 className="mt-1 font-display text-base font-bold text-ink">{item.title}</h3>
+                    <h3 className="mt-1 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{item.title}</h3>
                     <p className="mt-1.5 text-sm text-ink-soft leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -340,7 +340,7 @@ export default function About() {
           <div className="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {pillarCards.map((item) => (
               <div key={item.title} className="group rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover">
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand/20 to-brand/5 ring-1 ring-brand/10 dark:from-brand/10 transition group-hover:scale-110 group-hover:shadow-glow group-hover:bg-brand group-hover:text-white">
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow group-hover:bg-brand group-hover:text-white">
                   {item.icon}
                 </div>
                 <h3 className="mt-5 font-display text-base font-bold text-ink group-hover:text-brand transition-colors">
@@ -364,11 +364,11 @@ export default function About() {
 
           <div className="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {coreValues.map((val) => (
-              <div key={val.title} className="rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-soft text-brand dark:bg-brand-soft/10 mb-4">
+              <div key={val.title} className="group rounded-2xl bg-card p-6 shadow-soft ring-1 ring-border card-hover">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-soft text-brand ring-1 ring-brand/10 dark:bg-brand-soft/10 mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow group-hover:bg-brand group-hover:text-white">
                   {val.icon}
                 </div>
-                <h3 className="font-display text-base font-bold text-ink">{val.title}</h3>
+                <h3 className="font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{val.title}</h3>
                 <p className="mt-2 text-sm text-ink-soft leading-relaxed">{val.desc}</p>
               </div>
             ))}

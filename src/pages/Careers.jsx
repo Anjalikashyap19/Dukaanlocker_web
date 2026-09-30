@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Rocket, HeartHandshake, TrendingUp, Crown, GraduationCap,
   Users, Briefcase, BellRing, Target, Zap, Coffee,
-  Globe, Sparkles, ArrowRight, Check,
+  Sparkles, ArrowRight, Check,
 } from 'lucide-react';
 import { useComingSoon } from '../context/ComingSoonContext';
 import { useScrollRevealAll } from '../hooks/usePremium';
@@ -54,19 +54,12 @@ const culture = [
     title: 'Speed & Agility',
     desc: 'We move fast, iterate quickly, and ship features that make an immediate difference to our users.',
   },
-  {
-    icon: <Globe className="h-5 w-5" />,
-    title: 'Remote-First',
-    desc: 'Work from anywhere in India with flexible hours and a culture built around output, not hours.',
-  },
 ];
 
 const perks = [
-  'Competitive equity packages',
   'Flexible work hours',
   'Health & wellness benefits',
   'Learning & development budget',
-  'Annual retreats',
   'Latest tech equipment',
 ];
 

@@ -19,32 +19,32 @@ export default function Security() {
 
   const securityPillars = [
     {
-      icon: <Lock className="h-6 w-6 text-brand" />,
+      icon: <Lock className="h-6 w-6" />,
       title: 'Secure Cloud Storage',
       desc: 'All documents deposited into your DukaanLocker vault are stored securely in protected cloud infrastructure, shielding your critical business certificates from physical loss, theft, or damage.',
     },
     {
-      icon: <KeyRound className="h-6 w-6 text-brand" />,
+      icon: <KeyRound className="h-6 w-6" />,
       title: 'Encrypted Data in Transit',
       desc: 'All data exchanged between your browser, mobile device, and DukaanLocker is encrypted using standard HTTPS and TLS protocols, keeping communications safe from interception.',
     },
     {
-      icon: <ShieldCheck className="h-6 w-6 text-brand" />,
+      icon: <ShieldCheck className="h-6 w-6" />,
       title: 'Authenticated Access Control',
       desc: 'Your store vault is protected by secure user authentication. Only verified account holders have permission to view, manage, and download their business records.',
     },
     {
-      icon: <FileCheck className="h-6 w-6 text-brand" />,
+      icon: <FileCheck className="h-6 w-6" />,
       title: 'Controlled Document Sharing',
       desc: 'When sharing certificates with your Chartered Accountant (CA) or tax consultant, you can generate secure, permission-controlled links to ensure safe document distribution.',
     },
     {
-      icon: <EyeOff className="h-6 w-6 text-brand" />,
+      icon: <EyeOff className="h-6 w-6" />,
       title: 'Strict User Privacy',
       desc: 'Your uploaded documents and commercial records belong strictly to you. We respect user privacy and do not sell, rent, or share your proprietary business data with third parties.',
     },
     {
-      icon: <HardDrive className="h-6 w-6 text-brand" />,
+      icon: <HardDrive className="h-6 w-6" />,
       title: 'Reliable Backups & Expiry Tracking',
       desc: 'Digital document archives are safely backed up with automated expiry tracking, ensuring you always have access to current licenses and never miss statutory renewals.',
     },
@@ -98,13 +98,13 @@ export default function Security() {
             {securityPillars.map((pillar) => (
               <div
                 key={pillar.title}
-                className="rounded-3xl bg-card p-8 shadow-soft ring-1 ring-border card-hover flex flex-col justify-between"
+                className="group rounded-3xl bg-card p-8 shadow-soft ring-1 ring-border card-hover flex flex-col justify-between"
               >
                 <div>
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-soft text-brand dark:bg-brand-soft/10 mb-5">
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-soft text-brand dark:bg-brand-soft/10 mb-5 transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow group-hover:bg-brand group-hover:text-white">
                     {pillar.icon}
                   </div>
-                  <h3 className="font-display text-base font-bold text-ink">{pillar.title}</h3>
+                  <h3 className="font-display text-base font-bold text-ink group-hover:text-brand transition-colors">{pillar.title}</h3>
                   <p className="mt-2.5 text-xs text-ink-soft leading-relaxed">{pillar.desc}</p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-border/50 flex items-center gap-1.5 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">

@@ -32,7 +32,6 @@ export default function Navbar({ theme, toggleTheme }) {
   const navLinks = [
     { name: 'Home', to: '/' },
     { name: 'Features', to: '/features' },
-    { name: 'Pricing', to: '/pricing' },
     { name: 'About', to: '/about' },
     { name: 'Careers', to: '/careers' },
     { name: 'Support', to: '/support' },

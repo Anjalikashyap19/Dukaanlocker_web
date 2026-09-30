@@ -106,12 +106,7 @@ export default function Support() {
                       aria-expanded={isOpen}
                       className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer"
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="rounded-md bg-brand-soft/50 px-2 py-0.5 text-[9px] font-bold text-brand dark:bg-brand-soft/10">
-                          {faq.category}
-                        </span>
-                        <span className={`font-display text-sm font-bold transition-colors ${isOpen ? 'text-brand' : 'text-ink'}`}>{faq.q}</span>
-                      </div>
+                      <span className={`font-display text-sm font-bold transition-colors ${isOpen ? 'text-brand' : 'text-ink'}`}>{faq.q}</span>
                       <ChevronDown
                         className={`h-4 w-4 shrink-0 text-brand transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                         aria-hidden="true"
