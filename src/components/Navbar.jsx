@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Lock, Sun, Moon, Menu, X, ArrowRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowRight } from 'lucide-react';
 import { useComingSoon } from '../context/ComingSoonContext';
+import logo from '../assets/logo.png';
 
 export default function Navbar({ theme, toggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,9 +65,13 @@ export default function Navbar({ theme, toggleTheme }) {
       <div className="mx-auto max-w-7xl px-4">
         <nav className="glass flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--gradient-brand)] shadow-glow" style={{ background: 'var(--gradient-brand)' }}>
-              <Lock className="h-[1.125rem] w-[1.125rem] text-white" />
+          <Link to="/" className="group flex items-center gap-2.5">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-soft ring-1 ring-border/60 transition-transform duration-300 group-hover:scale-105">
+              <img
+                src={logo}
+                alt="DukaanLocker Logo"
+                className="h-full w-full object-contain p-0.5"
+              />
             </div>
             <span className="font-display text-lg font-bold tracking-tight text-ink">
               Dukaan<span className="gradient-text">Locker</span>

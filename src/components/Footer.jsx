@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Lock,
   Mail,
   Send,
   Check,
@@ -13,6 +12,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { useComingSoon } from '../context/ComingSoonContext';
+import logo from '../assets/logo.png';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -146,9 +146,13 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-border pb-16">
           {/* Brand col */}
           <div className="sm:col-span-2 lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--gradient-brand)] shadow-glow" style={{ background: 'var(--gradient-brand)' }}>
-                <Lock className="h-4 w-4 text-white" />
+            <Link to="/" className="group flex items-center gap-2.5">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white shadow-soft ring-1 ring-border/60 transition-transform duration-300 group-hover:scale-105">
+                <img
+                  src={logo}
+                  alt="DukaanLocker Logo"
+                  className="h-full w-full object-contain p-0.5"
+                />
               </div>
               <span className="font-display text-base font-bold tracking-tight text-ink">
                 Dukaan<span className="gradient-text">Locker</span>
